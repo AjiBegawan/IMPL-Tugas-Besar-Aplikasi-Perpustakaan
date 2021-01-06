@@ -52,70 +52,70 @@ public class Login {
 		frame.setBounds(100, 100, 1080, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel BG = new JPanel();
 		BG.setBackground(new Color(0, 191, 255));
 		BG.setBounds(0, 0, 1064, 681);
 		frame.getContentPane().add(BG);
 		BG.setLayout(null);
-		
+
 		JPanel Judul = new JPanel();
 		Judul.setBackground(new Color(0, 191, 255));
 		Judul.setBounds(400, 136, 250, 58);
 		BG.add(Judul);
-		
+
 		JLabel lblNewLabel = new JLabel("MEMBER LOGIN");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		Judul.add(lblNewLabel);
-		
+
 		JPanel FieldLogin = new JPanel();
 		FieldLogin.setBackground(new Color(0, 191, 255));
 		FieldLogin.setBorder(new LineBorder(new Color(255, 255, 255), 2, true));
 		FieldLogin.setBounds(303, 157, 436, 367);
 		BG.add(FieldLogin);
 		FieldLogin.setLayout(null);
-		
+
 		FieldInputNama = new JTextField();
 		FieldInputNama.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		FieldInputNama.setBackground(new Color(0, 191, 255));
 		FieldInputNama.setBounds(30, 120, 370, 35);
 		FieldLogin.add(FieldInputNama);
 		FieldInputNama.setColumns(10);
-		
+
 		JLabel JudulNama = new JLabel("Username / Email");
 		JudulNama.setBackground(new Color(0, 191, 255));
 		JudulNama.setForeground(new Color(255, 255, 255));
 		JudulNama.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		JudulNama.setBounds(30, 90, 150, 20);
 		FieldLogin.add(JudulNama);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel_1.setBackground(new Color(0, 191, 255));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(30, 175, 150, 20);
 		FieldLogin.add(lblNewLabel_1);
-		
+
 		textField = new JTextField();
 		textField.setBackground(new Color(0, 191, 255));
 		textField.setBounds(30, 210, 370, 35);
 		FieldLogin.add(textField);
 		textField.setColumns(10);
-		
+
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Remember Me");
 		chckbxNewCheckBox.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		chckbxNewCheckBox.setForeground(new Color(255, 255, 255));
 		chckbxNewCheckBox.setBackground(new Color(0, 191, 255));
 		chckbxNewCheckBox.setBounds(30, 260, 120, 25);
 		FieldLogin.add(chckbxNewCheckBox);
-		
+
 		JLabel lblForgetPassword = new JLabel("forget password ?");
 		lblForgetPassword.setForeground(new Color(255, 255, 255));
 		lblForgetPassword.setFont(new Font("Segoe UI", Font.ITALIC, 12));
 		lblForgetPassword.setBounds(302, 263, 100, 20);
 		FieldLogin.add(lblForgetPassword);
-		
+
 		JButton btnSignIn = new JButton("SIGN IN");
 		btnSignIn.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		btnSignIn.setBackground(new Color(30, 144, 255));
