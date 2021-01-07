@@ -151,7 +151,7 @@ public class Login extends javax.swing.JFrame {
         String name = nama.getText();
         String pass = password.getText();
 
-        if (name.equals("admin")&&pass.equals("admin")){
+        if (name.equals("Chaniaayu")&&pass.equals("Chaniaayu")){
             
             Menu obj=new Menu();
             obj.setVisible(true);
