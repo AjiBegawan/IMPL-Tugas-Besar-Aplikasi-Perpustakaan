@@ -153,10 +153,16 @@ public class Login extends javax.swing.JFrame {
 
         if (name.equals("Chaniaayu")&&pass.equals("Chaniaayu")){
             
-            Menu obj=new Menu();
+            Menu_Petugas obj=new Menu_Petugas();
             obj.setVisible(true);
             dispose();
 
+        }else if(name.equals("anggota")&&pass.equals("anggota")){
+            
+            Menu_Anggota obj=new Menu_Anggota();
+            obj.setVisible(true);
+            dispose();
+            
         }else{
             JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
             nama.setText("");
