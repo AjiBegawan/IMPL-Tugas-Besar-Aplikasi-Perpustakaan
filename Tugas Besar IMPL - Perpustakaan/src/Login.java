@@ -81,7 +81,7 @@ public class Login extends javax.swing.JFrame {
 
         masuk.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         masuk.setText("L O G I N");
-        masuk.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        masuk.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         masuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 masukActionPerformed(evt);
@@ -151,15 +151,15 @@ public class Login extends javax.swing.JFrame {
         String name = nama.getText();
         String pass = password.getText();
 
-        if (name.equals("Chaniaayu")&&pass.equals("Chaniaayu")){
+        if (name.equals("test")&&pass.equals("test")){
             
-            Menu_Petugas obj=new Menu_Petugas();
+            Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
             obj.setVisible(true);
             dispose();
 
         }else if(name.equals("anggota")&&pass.equals("anggota")){
             
-            Menu_Anggota obj=new Menu_Anggota();
+            Menu_Anggota_Utama obj=new Menu_Anggota_Utama();
             obj.setVisible(true);
             dispose();
             
