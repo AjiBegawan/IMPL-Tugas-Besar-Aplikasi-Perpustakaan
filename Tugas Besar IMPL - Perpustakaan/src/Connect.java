@@ -19,7 +19,7 @@ public class Connect {
     
     public Connection getConnection(){
          try{
-            con=DriverManager.getConnection("jdbc:mysql://localhost/bimbel", "root","");
+            con=DriverManager.getConnection("jdbc:mysql://localhost/perpus", "root","");
     }
     catch(SQLException e){
         JOptionPane.showMessageDialog(null,e + " Gagal Koneksi");

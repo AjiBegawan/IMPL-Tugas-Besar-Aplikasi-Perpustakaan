@@ -242,15 +242,17 @@ private void load(){
         try {
             int no=1;
               Connect db = new Connect();
-                 String sql        = "SELECT * FROM buku";
+                 String sql        = "SELECT * FROM petugas";
 
            Statement stat = (Statement) db.getConnection();
-           ResultSet res = stat.executeQuery(sql);
+           ResultSet res;
    //        ResultSet res   = stat.executeQuery(sql);
            
 //        String sql        = "Select * from buku";
 //        Statement stat = (Statement) Connect.getConnection().createStatement();
 //        ResultSet res   = stat.executeQuery(sql);
+            res = stat.executeQuery(sql);
+ 
 
 
             while(res.next()){
