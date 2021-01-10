@@ -1,4 +1,6 @@
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author indiz
  */
-public class Menu_Petugas_Katalog extends javax.swing.JFrame {
+public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
 
     
     
@@ -23,7 +25,7 @@ public class Menu_Petugas_Katalog extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    public Menu_Petugas_Katalog()  {
+    public Menu_Petugas_EditKatalog()  {
         initComponents();
 
           loadBuku();
@@ -52,8 +54,22 @@ public class Menu_Petugas_Katalog extends javax.swing.JFrame {
         Profile = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableBuku = new javax.swing.JTable();
-        TotalBuku = new javax.swing.JLabel();
-        EditKatalog = new javax.swing.JButton();
+        Jumlah = new javax.swing.JLabel();
+        IDBuku = new javax.swing.JLabel();
+        JudulBuku = new javax.swing.JLabel();
+        Penulis = new javax.swing.JLabel();
+        Penerbit = new javax.swing.JLabel();
+        Kategori = new javax.swing.JLabel();
+        FJumlah = new javax.swing.JTextField();
+        FIDBuku = new javax.swing.JTextField();
+        FJudul = new javax.swing.JTextField();
+        FPenulis = new javax.swing.JTextField();
+        FPenerbit = new javax.swing.JTextField();
+        FKategori = new javax.swing.JTextField();
+        Clear = new javax.swing.JButton();
+        Tambah = new javax.swing.JButton();
+        Hapus = new javax.swing.JButton();
+        Update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -165,38 +181,153 @@ public class Menu_Petugas_Katalog extends javax.swing.JFrame {
         Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         Profile.setForeground(new java.awt.Color(255, 255, 255));
         Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Profile.setText("K A T A L O G");
+        Profile.setText("T A M B A H  K A T A L O G");
         panelAwal.add(Profile);
         Profile.setBounds(0, 0, 550, 70);
 
         TableBuku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
+        TableBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableBukuMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableBuku);
 
         panelAwal.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 220, 500, 300);
+        jScrollPane1.setBounds(40, 370, 500, 150);
 
-        TotalBuku.setText("jLabel2");
-        panelAwal.add(TotalBuku);
-        TotalBuku.setBounds(430, 160, 100, 50);
+        Jumlah.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Jumlah.setForeground(new java.awt.Color(255, 255, 255));
+        Jumlah.setText("Jumlah");
+        panelAwal.add(Jumlah);
+        Jumlah.setBounds(50, 300, 75, 25);
 
-        EditKatalog.setText("Edit katalog");
-        EditKatalog.addActionListener(new java.awt.event.ActionListener() {
+        IDBuku.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        IDBuku.setForeground(new java.awt.Color(255, 255, 255));
+        IDBuku.setText("ID Buku");
+        panelAwal.add(IDBuku);
+        IDBuku.setBounds(50, 100, 75, 25);
+
+        JudulBuku.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        JudulBuku.setForeground(new java.awt.Color(255, 255, 255));
+        JudulBuku.setText("Judul");
+        panelAwal.add(JudulBuku);
+        JudulBuku.setBounds(50, 140, 75, 25);
+
+        Penulis.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Penulis.setForeground(new java.awt.Color(255, 255, 255));
+        Penulis.setText("Penulis");
+        panelAwal.add(Penulis);
+        Penulis.setBounds(50, 180, 75, 25);
+
+        Penerbit.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Penerbit.setForeground(new java.awt.Color(255, 255, 255));
+        Penerbit.setText("Penerbit");
+        panelAwal.add(Penerbit);
+        Penerbit.setBounds(50, 220, 75, 25);
+
+        Kategori.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        Kategori.setForeground(new java.awt.Color(255, 255, 255));
+        Kategori.setText("Kategori");
+        panelAwal.add(Kategori);
+        Kategori.setBounds(50, 260, 75, 25);
+
+        FJumlah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditKatalogActionPerformed(evt);
+                FJumlahActionPerformed(evt);
             }
         });
-        panelAwal.add(EditKatalog);
-        EditKatalog.setBounds(40, 180, 150, 30);
+        panelAwal.add(FJumlah);
+        FJumlah.setBounds(130, 300, 200, 25);
+
+        FIDBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FIDBukuActionPerformed(evt);
+            }
+        });
+        panelAwal.add(FIDBuku);
+        FIDBuku.setBounds(130, 100, 200, 25);
+
+        FJudul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FJudulActionPerformed(evt);
+            }
+        });
+        panelAwal.add(FJudul);
+        FJudul.setBounds(130, 140, 200, 25);
+
+        FPenulis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FPenulisActionPerformed(evt);
+            }
+        });
+        panelAwal.add(FPenulis);
+        FPenulis.setBounds(130, 180, 200, 25);
+
+        FPenerbit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FPenerbitActionPerformed(evt);
+            }
+        });
+        panelAwal.add(FPenerbit);
+        FPenerbit.setBounds(130, 220, 200, 25);
+
+        FKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FKategoriActionPerformed(evt);
+            }
+        });
+        panelAwal.add(FKategori);
+        FKategori.setBounds(130, 260, 200, 25);
+
+        Clear.setBackground(new java.awt.Color(49, 44, 81));
+        Clear.setForeground(new java.awt.Color(255, 255, 255));
+        Clear.setText("Clear");
+        Clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearMouseClicked(evt);
+            }
+        });
+        panelAwal.add(Clear);
+        Clear.setBounds(440, 220, 100, 25);
+
+        Tambah.setBackground(new java.awt.Color(49, 44, 81));
+        Tambah.setForeground(new java.awt.Color(255, 255, 255));
+        Tambah.setText("Tambah");
+        Tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TambahMouseClicked(evt);
+            }
+        });
+        panelAwal.add(Tambah);
+        Tambah.setBounds(440, 100, 100, 25);
+
+        Hapus.setBackground(new java.awt.Color(49, 44, 81));
+        Hapus.setForeground(new java.awt.Color(255, 255, 255));
+        Hapus.setText("Hapus");
+        Hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HapusMouseClicked(evt);
+            }
+        });
+        panelAwal.add(Hapus);
+        Hapus.setBounds(440, 140, 100, 25);
+
+        Update.setBackground(new java.awt.Color(49, 44, 81));
+        Update.setForeground(new java.awt.Color(255, 255, 255));
+        Update.setText("Update");
+        panelAwal.add(Update);
+        Update.setBounds(440, 180, 100, 25);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
@@ -249,14 +380,97 @@ public class Menu_Petugas_Katalog extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
-    private void EditKatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditKatalogActionPerformed
+    private void FJumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FJumlahActionPerformed
         // TODO add your handling code here:
-        Menu_Petugas_EditKatalog MPEK = new Menu_Petugas_EditKatalog();
-        MPEK.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_EditKatalogActionPerformed
+    }//GEN-LAST:event_FJumlahActionPerformed
 
+    private void FIDBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FIDBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FIDBukuActionPerformed
 
+    private void FJudulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FJudulActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FJudulActionPerformed
+
+    private void FPenulisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FPenulisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FPenulisActionPerformed
+
+    private void FPenerbitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FPenerbitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FPenerbitActionPerformed
+
+    private void FKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FKategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FKategoriActionPerformed
+
+    private void TableBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableBukuMouseClicked
+        // TODO add your handling code here:
+        tampilrecord(evt);
+        loadBuku();
+        
+    }//GEN-LAST:event_TableBukuMouseClicked
+
+    private void ClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearMouseClicked
+        // TODO add your handling code here:
+        kosong();
+        loadBuku();
+    }//GEN-LAST:event_ClearMouseClicked
+
+    private void HapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HapusMouseClicked
+        // TODO add your handling code here:
+        hapus();
+        loadBuku();
+        kosong();
+    }//GEN-LAST:event_HapusMouseClicked
+
+    private void TambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TambahMouseClicked
+        // TODO add your handling code here:
+        tambah();
+        loadBuku();
+        kosong();
+    }//GEN-LAST:event_TambahMouseClicked
+
+    public void tampilrecord(java.awt.event.MouseEvent evt){
+        //menampilkan record yg di click kedalam text field
+        int baris = TableBuku.rowAtPoint(evt.getPoint());
+        String a =TableBuku.getValueAt(baris, 0).toString();
+        FIDBuku.setText(a);
+        String b = TableBuku.getValueAt(baris,1).toString();
+        FJudul.setText(b);       
+        String c = TableBuku.getValueAt(baris, 2).toString();
+        FPenulis.setText(c);
+        String d = TableBuku.getValueAt(baris, 3).toString();
+        FPenerbit.setText(d);
+        String e = TableBuku.getValueAt(baris, 4).toString();
+        FKategori.setText(e);
+        String f = TableBuku.getValueAt(baris, 5).toString();
+        FJumlah.setText(f);
+    }
+
+       private void kosong(){
+    // menghapus data di textfield yg input
+        FIDBuku.setText(null);
+        FJudul.setText(null);
+        FPenulis.setText(null);
+        FPenerbit.setText(null);  
+        FKategori.setText(null);
+        FJumlah.setText(null);  
+    } 
+    
+       public void hapus(){
+           try {
+               Connect c = new Connect();
+            String sql ="delete from buku where ID_Buku='"+FIDBuku.getText()+"'";
+            java.sql.Connection conn=(Connection) c.getConnection();
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(this, "Berhasil di Hapus");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+       }
+       
 public void loadBuku(){
      //menghapus isi table tblGaji
         model =new DefaultTableModel();
@@ -291,9 +505,21 @@ public void loadBuku(){
             JOptionPane.showMessageDialog(null, err.getMessage() );
       }
      banyak = model.getRowCount();
-     TotalBuku.setText(""+banyak);
 }
-    
+public void tambah(){
+            try {
+                Connect c = new Connect();
+            String sql;
+            sql = "INSERT INTO buku VALUES ('"+FIDBuku.getText()+"','"+FJudul.getText()+"','"+FPenulis.getText()+"','"+FPenerbit.getText()+"','"+FKategori.getText()+"','"+FJumlah.getText()+"')";
+            java.sql.Connection conn=(Connection) c.getConnection();
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+}
+
     /**
      * @param args the command line arguments
      */
@@ -331,10 +557,24 @@ public void loadBuku(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton EditKatalog;
+    private javax.swing.JButton Clear;
+    private javax.swing.JTextField FIDBuku;
+    private javax.swing.JTextField FJudul;
+    private javax.swing.JTextField FJumlah;
+    private javax.swing.JTextField FKategori;
+    private javax.swing.JTextField FPenerbit;
+    private javax.swing.JTextField FPenulis;
+    private javax.swing.JButton Hapus;
+    private javax.swing.JLabel IDBuku;
+    private javax.swing.JLabel JudulBuku;
+    private javax.swing.JLabel Jumlah;
+    private javax.swing.JLabel Kategori;
+    private javax.swing.JLabel Penerbit;
+    private javax.swing.JLabel Penulis;
     private javax.swing.JLabel Profile;
     private javax.swing.JTable TableBuku;
-    private javax.swing.JLabel TotalBuku;
+    private javax.swing.JButton Tambah;
+    private javax.swing.JButton Update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton katalogBtn;
