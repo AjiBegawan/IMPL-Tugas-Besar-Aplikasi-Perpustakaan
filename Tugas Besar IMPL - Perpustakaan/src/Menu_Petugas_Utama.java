@@ -25,6 +25,11 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         initComponents();
 
           load();
+        
+          Menu_Petugas_Katalog MPK = new Menu_Petugas_Katalog();
+
+          FieldKatalog.setText(String.valueOf(MPK.banyak));
+          
     }
 
     /**
@@ -174,7 +179,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldProfile.setText("untukProfile");
         FieldProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         panelAwal.add(FieldProfile);
-        FieldProfile.setBounds(20, 80, 150, 150);
+        FieldProfile.setBounds(20, 80, 300, 80);
 
         FieldKatalog.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldKatalog.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,7 +187,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldKatalog.setText("untukKatalog");
         FieldKatalog.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         panelAwal.add(FieldKatalog);
-        FieldKatalog.setBounds(200, 80, 150, 150);
+        FieldKatalog.setBounds(20, 170, 300, 80);
 
         FieldPengembalian.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldPengembalian.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,7 +195,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldPengembalian.setText("untukPengembalian");
         FieldPengembalian.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         panelAwal.add(FieldPengembalian);
-        FieldPengembalian.setBounds(400, 80, 150, 150);
+        FieldPengembalian.setBounds(20, 440, 300, 80);
 
         FieldLaporan.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldLaporan.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,7 +203,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldLaporan.setText("untukLaporan");
         FieldLaporan.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         panelAwal.add(FieldLaporan);
-        FieldLaporan.setBounds(320, 260, 150, 150);
+        FieldLaporan.setBounds(20, 260, 300, 80);
 
         FieldPeminjaman.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,7 +211,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldPeminjaman.setText("untukPeminjaman");
         FieldPeminjaman.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         panelAwal.add(FieldPeminjaman);
-        FieldPeminjaman.setBounds(90, 260, 150, 150);
+        FieldPeminjaman.setBounds(20, 350, 300, 80);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
