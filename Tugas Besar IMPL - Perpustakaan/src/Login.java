@@ -5,6 +5,9 @@
  */
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +55,9 @@ public class Login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Pengumuman = new javax.swing.JLabel();
+        Panel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,12 +139,20 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jCheckBox1);
         jCheckBox1.setBounds(20, 260, 120, 20);
 
+        jLabel1.setText("jLabel1");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(130, 320, 150, 100);
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(270, 160, 360, 340);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/8a4e1e8d6b340da246f22c5fac5b655e.jpg"))); // NOI18N
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(0, 0, 650, 660);
+        Pengumuman.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jPanel1.add(Pengumuman);
+        Pengumuman.setBounds(300, 510, 300, 90);
+
+        Panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/8a4e1e8d6b340da246f22c5fac5b655e.jpg"))); // NOI18N
+        jPanel1.add(Panel);
+        Panel.setBounds(0, 0, 650, 660);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,26 +177,93 @@ public class Login extends javax.swing.JFrame {
         String name = nama.getText();
         String pass = password.getText();
 
+//        if (name.equals("test")&&pass.equals("test")){
+//            
+//            Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+//            obj.setVisible(true);
+//            dispose();
+//
+//        }else if(name.equals("anggota")&&pass.equals("anggota")){
+//            
+//            Menu_Anggota_Utama obj=new Menu_Anggota_Utama();
+//            obj.setVisible(true);
+//            dispose();
+//            
+//        }else{
+//            JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
+//            nama.setText("");
+//            password.setText("");
+//        }
         
-        
-        
-        if (name.equals("test")&&pass.equals("test")){
-            
-            Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-            obj.setVisible(true);
-            dispose();
+                //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+           Connect db = new Connect();
+           String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+name+"' AND Password = '"+pass+"' ";
+//           String sql        = "SELECT * FROM petugas";
 
-        }else if(name.equals("anggota")&&pass.equals("anggota")){
-            
-            Menu_Anggota_Utama obj=new Menu_Anggota_Utama();
-            obj.setVisible(true);
-            dispose();
-            
-        }else{
-            JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
-            nama.setText("");
-            password.setText("");
+           Statement stat = (Statement) db.getConnection().createStatement();;
+           ResultSet res= stat.executeQuery(sql);
+            int i = 0;
+            if (res.next())
+            {   
+                String dbasePassword=res.getString("Password").toString().trim();
+                String enteredPassword=new String(password.getText().trim());
+                
+                if(dbasePassword.equals(enteredPassword)){
+                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+                    obj.setVisible(true);
+                   dispose();
+                }
+                else{
+                    Pengumuman.setText("Nama atau Password yang anda masukan salah");
+                }
+ 	       
+            }                     
+            else
+            {                  
+                Pengumuman.setText("Nama atau Password yang anda masukan salah");             
+            }                      
+            stat.close();       
         }
+        catch(SQLException se){
+             se.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();     
+            Pengumuman.setText("Exception occurred while searching in the users table");
+        } 
+                   
+                    
+//                if (name == res.getString("Name") && pass == res.getString("Password")){
+//                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+//                    obj.setVisible(true);
+//                    dispose();
+//                }else{
+//                    JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
+//                    nama.setText("");
+//                    password.setText("");
+//                }
+//       while(res.next()){
+//                    
+//                if (name == res.getString("Name") && pass == res.getString("Password")){
+//                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+//                    obj.setVisible(true);
+//                    dispose();
+//                }else{
+//                    JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
+//                    nama.setText("");
+//                    password.setText("");
+//                }
+//
+//            }
+//
+//        } catch (SQLException e) {
+//        }
+        
+        
+        
+        
     }//GEN-LAST:event_masukActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -236,9 +316,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Panel;
+    private javax.swing.JLabel Pengumuman;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

@@ -232,7 +232,7 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
 
     private void panelUtamaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelUtamaMouseEntered
         // TODO add your handling code here:
-        load();
+       
     }//GEN-LAST:event_panelUtamaMouseEntered
 
 private void load(){
@@ -244,51 +244,26 @@ private void load(){
               Connect db = new Connect();
                  String sql        = "SELECT * FROM petugas";
 
-           Statement stat = (Statement) db.getConnection();
-           ResultSet res;
-   //        ResultSet res   = stat.executeQuery(sql);
-           
-//        String sql        = "Select * from buku";
-//        Statement stat = (Statement) Connect.getConnection().createStatement();
-//        ResultSet res   = stat.executeQuery(sql);
-            res = stat.executeQuery(sql);
+           Statement stat = (Statement) db.getConnection().createStatement();;
+           ResultSet res= stat.executeQuery(sql);
  
-
+int i = 0;
 
             while(res.next()){
-                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4)});
+
+                Object[ ] obj = new Object[10];
+                obj[0] = ++i;
+                obj[1] = res.getString("ID_Petugas"); 
+                obj[2] = res.getString("Nama");
+                obj[3] = res.getString("Alamat"); 
+                obj[4] = res.getString("No_Telp");
+                obj[5] = res.getString("Password"); 
+
+                model.addRow(obj);
             }
             Tabel.setModel(model);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
-
-
-
-//     //menghapus isi table tblGaji
-//     model.getDataVector( ).removeAllElements( );
-//     model.fireTableDataChanged( );
-//
-//     try{
-//           //membuat statemen pemanggilan data pada table tblGaji dari database
-//           Statement stat = (Statement) Connect.getConnection().createStatement();
-//           String sql        = "Select * from guru";
-//           ResultSet res   = stat.executeQuery(sql);
-//
-//           //penelusuran baris pada tabel tblGaji dari database
-//           while(res.next ()){
-//                Object[ ] obj = new Object[6];
-//                obj[0] = res.getString("ID_Guru"); 
-//                obj[1] = res.getString("Nama_Guru");
-//                obj[2] = res.getString("Materi"); 
-//                obj[3] = res.getString("Jam_Ajar");
-//         
-//
-//                model.addRow(obj);
-//            }
-//      }catch(SQLException err){
-//            JOptionPane.showMessageDialog(null, err.getMessage() );
-//      }  
 }
     
     /**
