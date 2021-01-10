@@ -23,17 +23,24 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
 
-    String n;
-    String p;
+    String n, p, namaInput, passInput;
+
     
-    public String getNama(){
+    String getNama(){
         n = nama.getText();
         return n;
     }
-    
-        public String getPassword(){
+    String getPassword(){
         p = password.getText();
         return p;
+    }
+    
+    String getNamaInput(){
+        return namaInput;
+    }
+    
+    String getPassInput(){
+        return passInput;
     }
     
     /**
@@ -57,7 +64,8 @@ public class Login extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         Pengumuman = new javax.swing.JLabel();
-        Panel = new javax.swing.JLabel();
+        panelutama = new javax.swing.JLabel();
+        wadahnp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,7 +83,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
 
-        nama.setText("test");
+        nama.setText("admin");
         nama.setMargin(new java.awt.Insets(5, 5, 5, 5));
         nama.setPreferredSize(new java.awt.Dimension(42, 30));
         nama.addActionListener(new java.awt.event.ActionListener() {
@@ -98,8 +106,13 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setBounds(220, 260, 110, 20);
 
         masuk.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        masuk.setText("L O G I N");
+        masuk.setText("L O G  I N");
         masuk.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        masuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                masukMouseEntered(evt);
+            }
+        });
         masuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 masukActionPerformed(evt);
@@ -108,7 +121,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(masuk);
         masuk.setBounds(20, 200, 310, 40);
 
-        password.setText("test");
+        password.setText("admin");
         password.setMargin(new java.awt.Insets(5, 5, 5, 5));
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,9 +163,13 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(Pengumuman);
         Pengumuman.setBounds(300, 510, 300, 90);
 
-        Panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/8a4e1e8d6b340da246f22c5fac5b655e.jpg"))); // NOI18N
-        jPanel1.add(Panel);
-        Panel.setBounds(0, 0, 650, 660);
+        panelutama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/8a4e1e8d6b340da246f22c5fac5b655e.jpg"))); // NOI18N
+        jPanel1.add(panelutama);
+        panelutama.setBounds(0, 0, 650, 660);
+
+        wadahnp.setText("jLabel3");
+        jPanel1.add(wadahnp);
+        wadahnp.setBounds(380, 580, 180, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,43 +191,81 @@ public class Login extends javax.swing.JFrame {
 
     private void masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masukActionPerformed
         // TODO add your handling code here:
-        String name = nama.getText();
-        String pass = password.getText();
-
-//        if (name.equals("test")&&pass.equals("test")){
-//            
-//            Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-//            obj.setVisible(true);
-//            dispose();
+        masuk();
 //
-//        }else if(name.equals("anggota")&&pass.equals("anggota")){
-//            
-//            Menu_Anggota_Utama obj=new Menu_Anggota_Utama();
-//            obj.setVisible(true);
-//            dispose();
-//            
-//        }else{
-//            JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
-//            nama.setText("");
-//            password.setText("");
+//        try {
+//            int no=1;
+//           Connect db = new Connect();
+//           String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+getNama()+"' AND Password = '"+getPassword()+"' ";
+//
+//           Statement stat = (Statement) db.getConnection().createStatement();;
+//           ResultSet res= stat.executeQuery(sql);
+//
+//            if (res.next())
+//            {   
+//                String dbasePassword=res.getString("Password").toString().trim();
+//                String enteredPassword=new String(password.getText().trim());
+//                String dbaseName=res.getString("Nama").toString().trim();
+//                String enteredName=new String(nama.getText().trim());
+//                getNama();
+//                getPassword();
+//                
+//                if(dbasePassword.equals(enteredPassword)){
+//                    if(dbaseName.equals(enteredName)){
+//                        Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+//                        obj.setVisible(true);
+//                         dispose();
+//                    }
+//                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+//                    obj.setVisible(true);
+//                   dispose();
+//                }
+//                else{
+//                    Pengumuman.setText("Nama atau Password yang anda masukan salah");
+//                }
+// 	       
+//            }                     
+//            else
+//            {                  
+//                Pengumuman.setText("Nama atau Password yang anda masukan salah" + namaInput);             
+//            }                      
+//            stat.close();       
 //        }
+//        catch(SQLException se){
+//             se.printStackTrace();
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();     
+//            Pengumuman.setText("Exception occurred while searching in the users table");
+//        }                   
+    }//GEN-LAST:event_masukActionPerformed
+
+    public void masuk (){
         
-                //menampilkan data database kedalam tabel
         try {
             int no=1;
            Connect db = new Connect();
-           String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+name+"' AND Password = '"+pass+"' ";
-//           String sql        = "SELECT * FROM petugas";
+           String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+getNama()+"' AND Password = '"+getPassword()+"' ";
 
            Statement stat = (Statement) db.getConnection().createStatement();;
            ResultSet res= stat.executeQuery(sql);
-            int i = 0;
+
             if (res.next())
             {   
                 String dbasePassword=res.getString("Password").toString().trim();
                 String enteredPassword=new String(password.getText().trim());
+                String dbaseName=res.getString("Nama").toString().trim();
+                String enteredName=new String(nama.getText().trim());
+                
+                namaInput = enteredName;
+                passInput = enteredPassword;
                 
                 if(dbasePassword.equals(enteredPassword)){
+                    if(dbaseName.equals(enteredName)){
+                        Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+                        obj.setVisible(true);
+                         dispose();
+                    }
                     Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
                     obj.setVisible(true);
                    dispose();
@@ -222,7 +277,7 @@ public class Login extends javax.swing.JFrame {
             }                     
             else
             {                  
-                Pengumuman.setText("Nama atau Password yang anda masukan salah");             
+                Pengumuman.setText("Nama atau Password yang anda masukan salah" + namaInput);             
             }                      
             stat.close();       
         }
@@ -232,40 +287,9 @@ public class Login extends javax.swing.JFrame {
         catch(Exception e){
             e.printStackTrace();     
             Pengumuman.setText("Exception occurred while searching in the users table");
-        } 
-                   
-                    
-//                if (name == res.getString("Name") && pass == res.getString("Password")){
-//                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-//                    obj.setVisible(true);
-//                    dispose();
-//                }else{
-//                    JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
-//                    nama.setText("");
-//                    password.setText("");
-//                }
-//       while(res.next()){
-//                    
-//                if (name == res.getString("Name") && pass == res.getString("Password")){
-//                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-//                    obj.setVisible(true);
-//                    dispose();
-//                }else{
-//                    JOptionPane.showMessageDialog(rootPane,"Invalid Username or Password Try Again");
-//                    nama.setText("");
-//                    password.setText("");
-//                }
-//
-//            }
-//
-//        } catch (SQLException e) {
-//        }
+        }   
         
-        
-        
-        
-    }//GEN-LAST:event_masukActionPerformed
-
+    }
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane,"Nama = admin, Password = admin");
@@ -278,6 +302,13 @@ public class Login extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void masukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masukMouseEntered
+        // TODO add your handling code here:
+        namaInput = nama.getText();
+        passInput = password.getText();
+        wadahnp.setText("test aja "+namaInput + passInput);
+    }//GEN-LAST:event_masukMouseEntered
 
     /**
      * @param args the command line arguments
@@ -316,7 +347,6 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Panel;
     private javax.swing.JLabel Pengumuman;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
@@ -328,6 +358,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JToggleButton masuk;
     private javax.swing.JTextField nama;
+    private javax.swing.JLabel panelutama;
     private javax.swing.JPasswordField password;
+    private javax.swing.JLabel wadahnp;
     // End of variables declaration//GEN-END:variables
 }

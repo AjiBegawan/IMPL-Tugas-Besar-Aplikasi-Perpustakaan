@@ -16,19 +16,14 @@ import javax.swing.table.DefaultTableModel;
 public class Menu_Petugas_Profile extends javax.swing.JFrame {
 
     
+    
     private DefaultTableModel model;
     /**
      * Creates new form Menu
      */
     public Menu_Petugas_Profile()  {
         initComponents();
-        //myinitComponents();
-                model =new DefaultTableModel();
-        Tabel.setModel(model);
-        model.addColumn("NID");
-        model.addColumn("Nama Guru");
-        model.addColumn("Materi");
-        model.addColumn("Lama Ajar");
+
           load();
     }
 
@@ -61,22 +56,15 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         FieldAlamat = new javax.swing.JTextField();
         FieldNama = new javax.swing.JTextField();
         FieldNoTelepon = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Tabel = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(720, 720));
-        setSize(new java.awt.Dimension(720, 720));
+        setMinimumSize(new java.awt.Dimension(800, 800));
+        setSize(new java.awt.Dimension(800, 800));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(50, 50, 50));
         panelUtama.setMinimumSize(new java.awt.Dimension(720, 720));
         panelUtama.setPreferredSize(new java.awt.Dimension(720, 720));
-        panelUtama.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelUtamaMouseEntered(evt);
-            }
-        });
         panelUtama.setLayout(null);
 
         panelJudul.setBackground(new java.awt.Color(33, 33, 33));
@@ -115,6 +103,11 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         katalogBtn.setForeground(new java.awt.Color(255, 243, 230));
         katalogBtn.setText("Katalog");
         katalogBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        katalogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katalogBtnActionPerformed(evt);
+            }
+        });
         panelNavBar.add(katalogBtn);
         katalogBtn.setBounds(0, 60, 150, 30);
 
@@ -122,6 +115,11 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         pengembalianBtn.setForeground(new java.awt.Color(255, 243, 230));
         pengembalianBtn.setText("Pengembalian");
         pengembalianBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pengembalianBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pengembalianBtnActionPerformed(evt);
+            }
+        });
         panelNavBar.add(pengembalianBtn);
         pengembalianBtn.setBounds(0, 90, 150, 30);
 
@@ -129,6 +127,11 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         peminjamanBtn.setForeground(new java.awt.Color(255, 243, 230));
         peminjamanBtn.setText("Peminjaman");
         peminjamanBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        peminjamanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                peminjamanBtnActionPerformed(evt);
+            }
+        });
         panelNavBar.add(peminjamanBtn);
         peminjamanBtn.setBounds(0, 120, 150, 30);
 
@@ -147,6 +150,11 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         logoutBtn.setBackground(new java.awt.Color(50, 50, 50));
         logoutBtn.setForeground(new java.awt.Color(255, 243, 230));
         logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
         panelNavBar.add(logoutBtn);
         logoutBtn.setBounds(0, 490, 150, 25);
 
@@ -193,76 +201,76 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         panelAwal.add(FieldNoTelepon);
         FieldNoTelepon.setBounds(150, 290, 360, 40);
 
-        Tabel.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(Tabel);
-
-        panelAwal.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 370, 453, 130);
-
         panelUtama.add(panelAwal);
         panelAwal.setBounds(160, 100, 550, 540);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 720, 720);
+        panelUtama.setBounds(0, 0, 800, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
-        Menu_Petugas_Profile MPP;
-        MPP = new Menu_Petugas_Profile();
+        Menu_Petugas_Profile MPP = new Menu_Petugas_Profile();
         MPP.setVisible(true);
         dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void laporanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporanBtnActionPerformed
         // TODO add your handling code here:
+        Menu_Petugas_Laporan MPL = new Menu_Petugas_Laporan();
+        MPL.setVisible(true);
+        dispose();
     }//GEN-LAST:event_laporanBtnActionPerformed
 
-    private void panelUtamaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelUtamaMouseEntered
+    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_panelUtamaMouseEntered
+        Menu_Petugas_Katalog MPK = new Menu_Petugas_Katalog();
+        MPK.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_katalogBtnActionPerformed
+
+    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Petugas_Pengembalian MPP = new Menu_Petugas_Pengembalian();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pengembalianBtnActionPerformed
+
+    private void peminjamanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peminjamanBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Petugas_Peminjaman MPP = new Menu_Petugas_Peminjaman();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_peminjamanBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        Login L = new Login();
+        L.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
 private void load(){
         // membuat tampilan model tabel
         
         //menampilkan data database kedalam tabel
         try {
-            int no=1;
-              Connect db = new Connect();
-                 String sql        = "SELECT * FROM petugas";
+            Login l = new Login();
 
-           Statement stat = (Statement) db.getConnection().createStatement();;
-           ResultSet res= stat.executeQuery(sql);
+            Connect db = new Connect();
+            String sql  = "SELECT * FROM petugas WHERE Nama = '"+ l.getNama() +"' AND Password = '"+ l.getPassword() +"'";
+            Statement stat = (Statement) db.getConnection().createStatement();;
+            ResultSet res= stat.executeQuery(sql);
  
-int i = 0;
-
             while(res.next()){
-
-                Object[ ] obj = new Object[10];
-                obj[0] = ++i;
-                obj[1] = res.getString("ID_Petugas"); 
-                obj[2] = res.getString("Nama");
-                obj[3] = res.getString("Alamat"); 
-                obj[4] = res.getString("No_Telp");
-                obj[5] = res.getString("Password"); 
-
-                model.addRow(obj);
+                FieldIdProfile.setText(res.getString("ID_Petugas"));
+                FieldNama.setText(res.getString("Nama"));
+                FieldNoTelepon.setText(res.getString("Alamat"));
+                FieldAlamat.setText(res.getString("No_Telp"));
             }
-            Tabel.setModel(model);
-        } catch (SQLException e) {
+        } catch (SQLException e) { 
         }
 }
     
@@ -312,9 +320,7 @@ int i = 0;
     private javax.swing.JLabel Nama;
     private javax.swing.JLabel NoTelepon;
     private javax.swing.JLabel Profile;
-    private javax.swing.JTable Tabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton laporanBtn;
     private javax.swing.JButton logoutBtn;

@@ -1,3 +1,8 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +15,16 @@
  */
 public class Menu_Petugas_Utama extends javax.swing.JFrame {
 
+    
+    
+    private DefaultTableModel model;
     /**
      * Creates new form Menu
      */
-    public Menu_Petugas_Utama() {
+    public Menu_Petugas_Utama()  {
         initComponents();
-        //myinitComponents();
+
+          load();
     }
 
     /**
@@ -38,104 +47,193 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         laporanBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         panelAwal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        Profile = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(720, 640));
-        setPreferredSize(new java.awt.Dimension(720, 640));
-        setSize(new java.awt.Dimension(720, 640));
+        setMinimumSize(new java.awt.Dimension(800, 800));
+        setSize(new java.awt.Dimension(800, 800));
         getContentPane().setLayout(null);
 
-        panelUtama.setBackground(new java.awt.Color(255, 255, 255));
+        panelUtama.setBackground(new java.awt.Color(50, 50, 50));
+        panelUtama.setMinimumSize(new java.awt.Dimension(720, 720));
+        panelUtama.setPreferredSize(new java.awt.Dimension(720, 720));
         panelUtama.setLayout(null);
 
-        panelJudul.setBackground(new java.awt.Color(153, 255, 255));
+        panelJudul.setBackground(new java.awt.Color(33, 33, 33));
+        panelJudul.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50)));
         panelJudul.setMinimumSize(new java.awt.Dimension(720, 90));
         panelJudul.setPreferredSize(new java.awt.Dimension(720, 90));
         panelJudul.setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(33, 33, 33));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setText("Menu Utama Petugas");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menu Profile Petugas");
         panelJudul.add(jLabel1);
-        jLabel1.setBounds(27, 12, 250, 53);
+        jLabel1.setBounds(27, 12, 250, 40);
 
         panelUtama.add(panelJudul);
         panelJudul.setBounds(0, 0, 720, 90);
 
-        panelNavBar.setBackground(new java.awt.Color(255, 204, 204));
+        panelNavBar.setBackground(new java.awt.Color(33, 33, 33));
+        panelNavBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50)));
+        panelNavBar.setLayout(null);
 
+        profileBtn.setBackground(new java.awt.Color(50, 50, 50));
+        profileBtn.setForeground(new java.awt.Color(255, 243, 230));
         profileBtn.setText("Profile");
+        profileBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
+        panelNavBar.add(profileBtn);
+        profileBtn.setBounds(0, 30, 150, 30);
 
+        katalogBtn.setBackground(new java.awt.Color(50, 50, 50));
+        katalogBtn.setForeground(new java.awt.Color(255, 243, 230));
         katalogBtn.setText("Katalog");
+        katalogBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        katalogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katalogBtnActionPerformed(evt);
+            }
+        });
+        panelNavBar.add(katalogBtn);
+        katalogBtn.setBounds(0, 60, 150, 30);
 
+        pengembalianBtn.setBackground(new java.awt.Color(50, 50, 50));
+        pengembalianBtn.setForeground(new java.awt.Color(255, 243, 230));
         pengembalianBtn.setText("Pengembalian");
+        pengembalianBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pengembalianBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pengembalianBtnActionPerformed(evt);
+            }
+        });
+        panelNavBar.add(pengembalianBtn);
+        pengembalianBtn.setBounds(0, 90, 150, 30);
 
+        peminjamanBtn.setBackground(new java.awt.Color(50, 50, 50));
+        peminjamanBtn.setForeground(new java.awt.Color(255, 243, 230));
         peminjamanBtn.setText("Peminjaman");
+        peminjamanBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        peminjamanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                peminjamanBtnActionPerformed(evt);
+            }
+        });
+        panelNavBar.add(peminjamanBtn);
+        peminjamanBtn.setBounds(0, 120, 150, 30);
 
+        laporanBtn.setBackground(new java.awt.Color(50, 50, 50));
+        laporanBtn.setForeground(new java.awt.Color(255, 243, 230));
         laporanBtn.setText("Laporan");
+        laporanBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        laporanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporanBtnActionPerformed(evt);
+            }
+        });
+        panelNavBar.add(laporanBtn);
+        laporanBtn.setBounds(0, 150, 150, 30);
 
+        logoutBtn.setBackground(new java.awt.Color(50, 50, 50));
+        logoutBtn.setForeground(new java.awt.Color(255, 243, 230));
         logoutBtn.setText("Log Out");
-
-        javax.swing.GroupLayout panelNavBarLayout = new javax.swing.GroupLayout(panelNavBar);
-        panelNavBar.setLayout(panelNavBarLayout);
-        panelNavBarLayout.setHorizontalGroup(
-            panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutBtn)
-                    .addComponent(laporanBtn)
-                    .addComponent(peminjamanBtn)
-                    .addComponent(pengembalianBtn)
-                    .addComponent(katalogBtn)
-                    .addComponent(profileBtn))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        panelNavBarLayout.setVerticalGroup(
-            panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(profileBtn)
-                .addGap(52, 52, 52)
-                .addComponent(katalogBtn)
-                .addGap(62, 62, 62)
-                .addComponent(pengembalianBtn)
-                .addGap(50, 50, 50)
-                .addComponent(peminjamanBtn)
-                .addGap(43, 43, 43)
-                .addComponent(laporanBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addComponent(logoutBtn)
-                .addGap(30, 30, 30))
-        );
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        panelNavBar.add(logoutBtn);
+        logoutBtn.setBounds(0, 490, 150, 25);
 
         panelUtama.add(panelNavBar);
         panelNavBar.setBounds(0, 90, 150, 550);
 
         panelAwal.setLayout(null);
 
-        jLabel2.setText("Panel Awal setelah Login");
-        panelAwal.add(jLabel2);
-        jLabel2.setBounds(213, 12, 122, 15);
+        Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Profile.setText("P R O F I L E ");
+        panelAwal.add(Profile);
+        Profile.setBounds(0, 0, 550, 70);
 
         panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 100, 550, 530);
+        panelAwal.setBounds(160, 100, 550, 540);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 720, 640);
+        panelUtama.setBounds(0, 0, 800, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
+        Menu_Petugas_Profile MPP = new Menu_Petugas_Profile();
+        MPP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
+    private void laporanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporanBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Petugas_Laporan MPL = new Menu_Petugas_Laporan();
+        MPL.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_laporanBtnActionPerformed
+
+    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Petugas_Katalog MPK = new Menu_Petugas_Katalog();
+        MPK.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_katalogBtnActionPerformed
+
+    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Petugas_Pengembalian MPP = new Menu_Petugas_Pengembalian();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pengembalianBtnActionPerformed
+
+    private void peminjamanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peminjamanBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Petugas_Peminjaman MPP = new Menu_Petugas_Peminjaman();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_peminjamanBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        Login L = new Login();
+        L.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+private void load(){
+        // membuat tampilan model tabel
+        
+        //menampilkan data database kedalam tabel
+        try {
+            Login l = new Login();
+
+            Connect db = new Connect();
+            String sql  = "SELECT * FROM petugas WHERE Nama = '"+ l.getNama() +"' AND Password = '"+ l.getPassword() +"'";
+            Statement stat = (Statement) db.getConnection().createStatement();;
+            ResultSet res= stat.executeQuery(sql);
+ 
+            while(res.next()){
+                FieldIdProfile.setText(res.getString("ID_Petugas"));
+                FieldNama.setText(res.getString("Nama"));
+                FieldNoTelepon.setText(res.getString("Alamat"));
+                FieldAlamat.setText(res.getString("No_Telp"));
+            }
+        } catch (SQLException e) { 
+        }
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -153,13 +251,13 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu_Petugas_Utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu_Petugas_Utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu_Petugas_Utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu_Petugas_Utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -167,14 +265,14 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu_Petugas_Utama().setVisible(true);
+                new Menu_Petugas_Profile().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Profile;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton laporanBtn;
     private javax.swing.JButton logoutBtn;

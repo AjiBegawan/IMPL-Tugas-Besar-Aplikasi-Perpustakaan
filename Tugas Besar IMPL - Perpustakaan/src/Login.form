@@ -80,7 +80,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="nama">
               <Properties>
-                <Property name="text" type="java.lang.String" value="test"/>
+                <Property name="text" type="java.lang.String" value="admin"/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[5, 5, 5, 5]"/>
                 </Property>
@@ -121,7 +121,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="L O G I N"/>
+                <Property name="text" type="java.lang.String" value="L O G  I N"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder/>
@@ -129,6 +129,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="masukMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masukActionPerformed"/>
               </Events>
               <Constraints>
@@ -139,7 +140,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="password">
               <Properties>
-                <Property name="text" type="java.lang.String" value="test"/>
+                <Property name="text" type="java.lang.String" value="admin"/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[5, 5, 5, 5]"/>
                 </Property>
@@ -220,7 +221,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="Panel">
+        <Component class="javax.swing.JLabel" name="panelutama">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Image/8a4e1e8d6b340da246f22c5fac5b655e.jpg"/>
@@ -229,6 +230,16 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="-1" height="660"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="wadahnp">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel3"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="380" y="580" width="180" height="50"/>
             </Constraint>
           </Constraints>
         </Component>
