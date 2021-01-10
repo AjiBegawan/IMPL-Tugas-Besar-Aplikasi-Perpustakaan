@@ -39,6 +39,9 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(720, 640));
+        setPreferredSize(new java.awt.Dimension(720, 640));
+        setSize(new java.awt.Dimension(720, 640));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(255, 255, 255));

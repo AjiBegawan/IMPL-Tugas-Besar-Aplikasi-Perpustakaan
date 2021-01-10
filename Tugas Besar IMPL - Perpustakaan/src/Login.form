@@ -80,7 +80,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="nama">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name"/>
+                <Property name="text" type="java.lang.String" value="test"/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[5, 5, 5, 5]"/>
                 </Property>
@@ -139,7 +139,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="password">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Password"/>
+                <Property name="text" type="java.lang.String" value="test"/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[5, 5, 5, 5]"/>
                 </Property>

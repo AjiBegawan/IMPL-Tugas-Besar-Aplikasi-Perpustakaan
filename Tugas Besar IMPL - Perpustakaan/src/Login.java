@@ -20,6 +20,19 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
 
+    String n;
+    String p;
+    
+    public String getNama(){
+        n = nama.getText();
+        return n;
+    }
+    
+        public String getPassword(){
+        p = password.getText();
+        return p;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +70,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
 
-        nama.setText("Name");
+        nama.setText("test");
         nama.setMargin(new java.awt.Insets(5, 5, 5, 5));
         nama.setPreferredSize(new java.awt.Dimension(42, 30));
         nama.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +103,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(masuk);
         masuk.setBounds(20, 200, 310, 40);
 
-        password.setText("Password");
+        password.setText("test");
         password.setMargin(new java.awt.Insets(5, 5, 5, 5));
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +164,9 @@ public class Login extends javax.swing.JFrame {
         String name = nama.getText();
         String pass = password.getText();
 
+        
+        
+        
         if (name.equals("test")&&pass.equals("test")){
             
             Menu_Petugas_Profile obj=new Menu_Petugas_Profile();

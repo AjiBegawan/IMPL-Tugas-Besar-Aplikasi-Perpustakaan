@@ -1,3 +1,8 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +15,21 @@
  */
 public class Menu_Petugas_Profile extends javax.swing.JFrame {
 
+    
+    private DefaultTableModel model;
     /**
      * Creates new form Menu
      */
-    public Menu_Petugas_Profile() {
+    public Menu_Petugas_Profile()  {
         initComponents();
         //myinitComponents();
+                model =new DefaultTableModel();
+        Tabel.setModel(model);
+        model.addColumn("NID");
+        model.addColumn("Nama Guru");
+        model.addColumn("Materi");
+        model.addColumn("Lama Ajar");
+          load();
     }
 
     /**
@@ -38,117 +52,243 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
         laporanBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         panelAwal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        Profile = new javax.swing.JLabel();
+        NoTelepon = new javax.swing.JLabel();
+        IdProfile = new javax.swing.JLabel();
+        Nama = new javax.swing.JLabel();
+        Alamat = new javax.swing.JLabel();
+        FieldIdProfile = new javax.swing.JTextField();
+        FieldAlamat = new javax.swing.JTextField();
+        FieldNama = new javax.swing.JTextField();
+        FieldNoTelepon = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabel = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(720, 720));
+        setSize(new java.awt.Dimension(720, 720));
         getContentPane().setLayout(null);
 
-        panelUtama.setBackground(new java.awt.Color(255, 255, 255));
+        panelUtama.setBackground(new java.awt.Color(50, 50, 50));
+        panelUtama.setMinimumSize(new java.awt.Dimension(720, 720));
+        panelUtama.setPreferredSize(new java.awt.Dimension(720, 720));
+        panelUtama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelUtamaMouseEntered(evt);
+            }
+        });
         panelUtama.setLayout(null);
 
-        panelJudul.setBackground(new java.awt.Color(153, 255, 255));
+        panelJudul.setBackground(new java.awt.Color(33, 33, 33));
+        panelJudul.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50)));
         panelJudul.setMinimumSize(new java.awt.Dimension(720, 90));
         panelJudul.setPreferredSize(new java.awt.Dimension(720, 90));
         panelJudul.setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(33, 33, 33));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Menu Profile Petugas");
         panelJudul.add(jLabel1);
-        jLabel1.setBounds(27, 12, 250, 53);
+        jLabel1.setBounds(27, 12, 250, 40);
 
         panelUtama.add(panelJudul);
         panelJudul.setBounds(0, 0, 720, 90);
 
-        panelNavBar.setBackground(new java.awt.Color(255, 204, 204));
+        panelNavBar.setBackground(new java.awt.Color(33, 33, 33));
+        panelNavBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50)));
+        panelNavBar.setLayout(null);
 
+        profileBtn.setBackground(new java.awt.Color(50, 50, 50));
+        profileBtn.setForeground(new java.awt.Color(255, 243, 230));
         profileBtn.setText("Profile");
+        profileBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
+        panelNavBar.add(profileBtn);
+        profileBtn.setBounds(0, 30, 150, 30);
 
+        katalogBtn.setBackground(new java.awt.Color(50, 50, 50));
+        katalogBtn.setForeground(new java.awt.Color(255, 243, 230));
         katalogBtn.setText("Katalog");
+        katalogBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelNavBar.add(katalogBtn);
+        katalogBtn.setBounds(0, 60, 150, 30);
 
+        pengembalianBtn.setBackground(new java.awt.Color(50, 50, 50));
+        pengembalianBtn.setForeground(new java.awt.Color(255, 243, 230));
         pengembalianBtn.setText("Pengembalian");
+        pengembalianBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelNavBar.add(pengembalianBtn);
+        pengembalianBtn.setBounds(0, 90, 150, 30);
 
+        peminjamanBtn.setBackground(new java.awt.Color(50, 50, 50));
+        peminjamanBtn.setForeground(new java.awt.Color(255, 243, 230));
         peminjamanBtn.setText("Peminjaman");
+        peminjamanBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelNavBar.add(peminjamanBtn);
+        peminjamanBtn.setBounds(0, 120, 150, 30);
 
+        laporanBtn.setBackground(new java.awt.Color(50, 50, 50));
+        laporanBtn.setForeground(new java.awt.Color(255, 243, 230));
         laporanBtn.setText("Laporan");
+        laporanBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        laporanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporanBtnActionPerformed(evt);
+            }
+        });
+        panelNavBar.add(laporanBtn);
+        laporanBtn.setBounds(0, 150, 150, 30);
 
+        logoutBtn.setBackground(new java.awt.Color(50, 50, 50));
+        logoutBtn.setForeground(new java.awt.Color(255, 243, 230));
         logoutBtn.setText("Log Out");
-
-        javax.swing.GroupLayout panelNavBarLayout = new javax.swing.GroupLayout(panelNavBar);
-        panelNavBar.setLayout(panelNavBarLayout);
-        panelNavBarLayout.setHorizontalGroup(
-            panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutBtn)
-                    .addComponent(laporanBtn)
-                    .addComponent(peminjamanBtn)
-                    .addComponent(katalogBtn)
-                    .addComponent(profileBtn))
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pengembalianBtn)
-                .addContainerGap())
-        );
-        panelNavBarLayout.setVerticalGroup(
-            panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(profileBtn)
-                .addGap(52, 52, 52)
-                .addComponent(katalogBtn)
-                .addGap(55, 55, 55)
-                .addComponent(pengembalianBtn)
-                .addGap(57, 57, 57)
-                .addComponent(peminjamanBtn)
-                .addGap(43, 43, 43)
-                .addComponent(laporanBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(logoutBtn)
-                .addGap(30, 30, 30))
-        );
+        panelNavBar.add(logoutBtn);
+        logoutBtn.setBounds(0, 490, 150, 25);
 
         panelUtama.add(panelNavBar);
         panelNavBar.setBounds(0, 90, 150, 550);
 
-        jLabel2.setText("Profile");
+        panelAwal.setLayout(null);
 
-        javax.swing.GroupLayout panelAwalLayout = new javax.swing.GroupLayout(panelAwal);
-        panelAwal.setLayout(panelAwalLayout);
-        panelAwalLayout.setHorizontalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAwalLayout.createSequentialGroup()
-                .addContainerGap(272, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(248, 248, 248))
-        );
-        panelAwalLayout.setVerticalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(505, Short.MAX_VALUE))
-        );
+        Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Profile.setText("P R O F I L E ");
+        panelAwal.add(Profile);
+        Profile.setBounds(0, 0, 550, 70);
+
+        NoTelepon.setText("N O   T E L E P O N");
+        panelAwal.add(NoTelepon);
+        NoTelepon.setBounds(30, 290, 120, 40);
+
+        IdProfile.setText("I D   P R O F I L E ");
+        panelAwal.add(IdProfile);
+        IdProfile.setBounds(30, 110, 100, 40);
+
+        Nama.setText("NAMA");
+        panelAwal.add(Nama);
+        Nama.setBounds(30, 170, 100, 40);
+
+        Alamat.setText("A L A M A T");
+        panelAwal.add(Alamat);
+        Alamat.setBounds(30, 230, 100, 40);
+
+        FieldIdProfile.setEditable(false);
+        panelAwal.add(FieldIdProfile);
+        FieldIdProfile.setBounds(150, 110, 360, 40);
+
+        FieldAlamat.setEditable(false);
+        panelAwal.add(FieldAlamat);
+        FieldAlamat.setBounds(150, 230, 360, 40);
+
+        FieldNama.setEditable(false);
+        panelAwal.add(FieldNama);
+        FieldNama.setBounds(150, 170, 360, 40);
+
+        FieldNoTelepon.setEditable(false);
+        panelAwal.add(FieldNoTelepon);
+        FieldNoTelepon.setBounds(150, 290, 360, 40);
+
+        Tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(Tabel);
+
+        panelAwal.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 370, 453, 130);
 
         panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 100, 550, 530);
+        panelAwal.setBounds(160, 100, 550, 540);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 720, 640);
+        panelUtama.setBounds(0, 0, 720, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
+        Menu_Petugas_Profile MPP;
+        MPP = new Menu_Petugas_Profile();
+        MPP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
+    private void laporanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporanBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_laporanBtnActionPerformed
+
+    private void panelUtamaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelUtamaMouseEntered
+        // TODO add your handling code here:
+        load();
+    }//GEN-LAST:event_panelUtamaMouseEntered
+
+private void load(){
+        // membuat tampilan model tabel
+        
+        //menampilkan data database kedalam tabel
+        try {
+            int no=1;
+              Connect db = new Connect();
+                 String sql        = "SELECT * FROM buku";
+
+           Statement stat = (Statement) db.getConnection();
+           ResultSet res = stat.executeQuery(sql);
+   //        ResultSet res   = stat.executeQuery(sql);
+           
+//        String sql        = "Select * from buku";
+//        Statement stat = (Statement) Connect.getConnection().createStatement();
+//        ResultSet res   = stat.executeQuery(sql);
+
+
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4)});
+            }
+            Tabel.setModel(model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+//     //menghapus isi table tblGaji
+//     model.getDataVector( ).removeAllElements( );
+//     model.fireTableDataChanged( );
+//
+//     try{
+//           //membuat statemen pemanggilan data pada table tblGaji dari database
+//           Statement stat = (Statement) Connect.getConnection().createStatement();
+//           String sql        = "Select * from guru";
+//           ResultSet res   = stat.executeQuery(sql);
+//
+//           //penelusuran baris pada tabel tblGaji dari database
+//           while(res.next ()){
+//                Object[ ] obj = new Object[6];
+//                obj[0] = res.getString("ID_Guru"); 
+//                obj[1] = res.getString("Nama_Guru");
+//                obj[2] = res.getString("Materi"); 
+//                obj[3] = res.getString("Jam_Ajar");
+//         
+//
+//                model.addRow(obj);
+//            }
+//      }catch(SQLException err){
+//            JOptionPane.showMessageDialog(null, err.getMessage() );
+//      }  
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -186,8 +326,18 @@ public class Menu_Petugas_Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Alamat;
+    private javax.swing.JTextField FieldAlamat;
+    private javax.swing.JTextField FieldIdProfile;
+    private javax.swing.JTextField FieldNama;
+    private javax.swing.JTextField FieldNoTelepon;
+    private javax.swing.JLabel IdProfile;
+    private javax.swing.JLabel Nama;
+    private javax.swing.JLabel NoTelepon;
+    private javax.swing.JLabel Profile;
+    private javax.swing.JTable Tabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton laporanBtn;
     private javax.swing.JButton logoutBtn;

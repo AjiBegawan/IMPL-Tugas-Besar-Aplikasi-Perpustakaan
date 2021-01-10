@@ -41,6 +41,9 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(720, 640));
+        setPreferredSize(new java.awt.Dimension(720, 640));
+        setSize(new java.awt.Dimension(720, 640));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,7 +94,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
                     .addComponent(pengembalianBtn)
                     .addComponent(katalogBtn)
                     .addComponent(profileBtn))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         panelNavBarLayout.setVerticalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +109,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
                 .addComponent(peminjamanBtn)
                 .addGap(43, 43, 43)
                 .addComponent(laporanBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(30, 30, 30))
         );
@@ -114,24 +117,11 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         panelUtama.add(panelNavBar);
         panelNavBar.setBounds(0, 90, 150, 550);
 
-        jLabel2.setText("Panel Awal setelah Login");
+        panelAwal.setLayout(null);
 
-        javax.swing.GroupLayout panelAwalLayout = new javax.swing.GroupLayout(panelAwal);
-        panelAwal.setLayout(panelAwalLayout);
-        panelAwalLayout.setHorizontalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel2)
-                .addContainerGap(219, Short.MAX_VALUE))
-        );
-        panelAwalLayout.setVerticalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(505, Short.MAX_VALUE))
-        );
+        jLabel2.setText("Panel Awal setelah Login");
+        panelAwal.add(jLabel2);
+        jLabel2.setBounds(213, 12, 122, 15);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(160, 100, 550, 530);
