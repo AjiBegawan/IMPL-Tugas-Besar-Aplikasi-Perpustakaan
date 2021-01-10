@@ -1,3 +1,11 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import tubes.konek;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,13 +17,22 @@
  * @author indiz
  */
 public class Menu_Anggota_Katalog extends javax.swing.JFrame {
-
+    private DefaultTableModel model;
     /**
      * Creates new form Menu
      */
     public Menu_Anggota_Katalog() {
         initComponents();
-        //myinitComponents();
+        model =new DefaultTableModel();
+        tableKatalog.setModel(model);
+        model.addColumn("ID Buku");
+        model.addColumn("Judul Buku");
+        model.addColumn("Penulis");
+        model.addColumn("Penerbit");
+        model.addColumn("Kategori");
+        model.addColumn("Kuantiti");
+        
+        getData();
     }
 
     /**
@@ -39,6 +56,8 @@ public class Menu_Anggota_Katalog extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         panelAwal = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableKatalog = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -116,6 +135,19 @@ public class Menu_Anggota_Katalog extends javax.swing.JFrame {
 
         jLabel2.setText("Katalog");
 
+        tableKatalog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableKatalog);
+
         javax.swing.GroupLayout panelAwalLayout = new javax.swing.GroupLayout(panelAwal);
         panelAwal.setLayout(panelAwalLayout);
         panelAwalLayout.setHorizontalGroup(
@@ -124,13 +156,16 @@ public class Menu_Anggota_Katalog extends javax.swing.JFrame {
                 .addContainerGap(266, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(248, 248, 248))
+            .addComponent(jScrollPane1)
         );
         panelAwalLayout.setVerticalGroup(
             panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAwalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         panelUtama.add(panelAwal);
@@ -185,6 +220,7 @@ public class Menu_Anggota_Katalog extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton laporanBtn;
     private javax.swing.JButton logoutBtn;
@@ -195,7 +231,34 @@ public class Menu_Anggota_Katalog extends javax.swing.JFrame {
     private javax.swing.JButton peminjamanBtn;
     private javax.swing.JButton pengembalianBtn;
     private javax.swing.JButton profileBtn;
+    private javax.swing.JTable tableKatalog;
     // End of variables declaration//GEN-END:variables
+
+    private void getData() {
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        
+        try{
+           Statement stat = (Statement) Koneksi.getConnection().createStatement();
+           String sql        = "Select * from buku";
+           ResultSet res   = stat.executeQuery(sql);
+
+           //penelusuran baris pada tabel tblGaji dari database
+           while(res.next ()){
+                Object[ ] obj = new Object[6];
+                obj[0] = res.getString("ID_Buku"); 
+                obj[1] = res.getString("Judul_Buku");
+                obj[2] = res.getString("Penulis"); 
+                obj[3] = res.getString("Penerbit");
+                obj[4] = res.getString("Kategori");
+                obj[5] = res.getString("Kuantiti");
+         
+                model.addRow(obj);
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Gagal mengambil buku");
+        }
+    }
 
     
 }
