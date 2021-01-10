@@ -48,6 +48,11 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         panelAwal = new javax.swing.JPanel();
         Profile = new javax.swing.JLabel();
+        FieldProfile = new javax.swing.JLabel();
+        FieldKatalog = new javax.swing.JLabel();
+        FieldPengembalian = new javax.swing.JLabel();
+        FieldLaporan = new javax.swing.JLabel();
+        FieldPeminjaman = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -68,7 +73,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(33, 33, 33));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Menu Profile Petugas");
+        jLabel1.setText("Menu Utama Petugas");
         panelJudul.add(jLabel1);
         jLabel1.setBounds(27, 12, 250, 40);
 
@@ -153,19 +158,61 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         panelUtama.add(panelNavBar);
         panelNavBar.setBounds(0, 90, 150, 550);
 
+        panelAwal.setBackground(new java.awt.Color(33, 33, 33));
         panelAwal.setLayout(null);
 
         Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setForeground(new java.awt.Color(255, 255, 255));
         Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Profile.setText("P R O F I L E ");
+        Profile.setText("H A L A M A N   U T A M A");
         panelAwal.add(Profile);
         Profile.setBounds(0, 0, 550, 70);
 
+        FieldProfile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        FieldProfile.setForeground(new java.awt.Color(255, 255, 255));
+        FieldProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-customer-90.png"))); // NOI18N
+        FieldProfile.setText("untukProfile");
+        FieldProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        panelAwal.add(FieldProfile);
+        FieldProfile.setBounds(20, 80, 150, 150);
+
+        FieldKatalog.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        FieldKatalog.setForeground(new java.awt.Color(255, 255, 255));
+        FieldKatalog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-book-90.png"))); // NOI18N
+        FieldKatalog.setText("untukKatalog");
+        FieldKatalog.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        panelAwal.add(FieldKatalog);
+        FieldKatalog.setBounds(200, 80, 150, 150);
+
+        FieldPengembalian.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        FieldPengembalian.setForeground(new java.awt.Color(255, 255, 255));
+        FieldPengembalian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-borrow-book-90.png"))); // NOI18N
+        FieldPengembalian.setText("untukPengembalian");
+        FieldPengembalian.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        panelAwal.add(FieldPengembalian);
+        FieldPengembalian.setBounds(400, 80, 150, 150);
+
+        FieldLaporan.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        FieldLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        FieldLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-analyze-90.png"))); // NOI18N
+        FieldLaporan.setText("untukLaporan");
+        FieldLaporan.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        panelAwal.add(FieldLaporan);
+        FieldLaporan.setBounds(320, 260, 150, 150);
+
+        FieldPeminjaman.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        FieldPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
+        FieldPeminjaman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-return-book-90.png"))); // NOI18N
+        FieldPeminjaman.setText("untukPeminjaman");
+        FieldPeminjaman.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        panelAwal.add(FieldPeminjaman);
+        FieldPeminjaman.setBounds(90, 260, 150, 150);
+
         panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 100, 550, 540);
+        panelAwal.setBounds(150, 90, 570, 550);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 800, 800);
+        panelUtama.setBounds(0, 0, 730, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -225,10 +272,6 @@ private void load(){
             ResultSet res= stat.executeQuery(sql);
  
             while(res.next()){
-                FieldIdProfile.setText(res.getString("ID_Petugas"));
-                FieldNama.setText(res.getString("Nama"));
-                FieldNoTelepon.setText(res.getString("Alamat"));
-                FieldAlamat.setText(res.getString("No_Telp"));
             }
         } catch (SQLException e) { 
         }
@@ -271,6 +314,11 @@ private void load(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FieldKatalog;
+    private javax.swing.JLabel FieldLaporan;
+    private javax.swing.JLabel FieldPeminjaman;
+    private javax.swing.JLabel FieldPengembalian;
+    private javax.swing.JLabel FieldProfile;
     private javax.swing.JLabel Profile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton katalogBtn;

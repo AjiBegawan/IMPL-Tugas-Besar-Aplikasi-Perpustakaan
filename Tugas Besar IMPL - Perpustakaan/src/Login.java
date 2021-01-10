@@ -86,11 +86,6 @@ public class Login extends javax.swing.JFrame {
         nama.setText("admin");
         nama.setMargin(new java.awt.Insets(5, 5, 5, 5));
         nama.setPreferredSize(new java.awt.Dimension(42, 30));
-        nama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaActionPerformed(evt);
-            }
-        });
         jPanel2.add(nama);
         nama.setBounds(70, 50, 260, 40);
 
@@ -123,11 +118,6 @@ public class Login extends javax.swing.JFrame {
 
         password.setText("admin");
         password.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
         jPanel2.add(password);
         password.setBounds(70, 110, 260, 40);
 
@@ -144,11 +134,6 @@ public class Login extends javax.swing.JFrame {
         jCheckBox1.setForeground(new java.awt.Color(0, 48, 63));
         jCheckBox1.setText(" Remember Me ");
         jCheckBox1.setOpaque(false);
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
         jPanel2.add(jCheckBox1);
         jCheckBox1.setBounds(20, 260, 120, 20);
 
@@ -185,63 +170,12 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
-
     private void masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masukActionPerformed
-        // TODO add your handling code here:
         masuk();
-//
-//        try {
-//            int no=1;
-//           Connect db = new Connect();
-//           String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+getNama()+"' AND Password = '"+getPassword()+"' ";
-//
-//           Statement stat = (Statement) db.getConnection().createStatement();;
-//           ResultSet res= stat.executeQuery(sql);
-//
-//            if (res.next())
-//            {   
-//                String dbasePassword=res.getString("Password").toString().trim();
-//                String enteredPassword=new String(password.getText().trim());
-//                String dbaseName=res.getString("Nama").toString().trim();
-//                String enteredName=new String(nama.getText().trim());
-//                getNama();
-//                getPassword();
-//                
-//                if(dbasePassword.equals(enteredPassword)){
-//                    if(dbaseName.equals(enteredName)){
-//                        Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-//                        obj.setVisible(true);
-//                         dispose();
-//                    }
-//                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-//                    obj.setVisible(true);
-//                   dispose();
-//                }
-//                else{
-//                    Pengumuman.setText("Nama atau Password yang anda masukan salah");
-//                }
-// 	       
-//            }                     
-//            else
-//            {                  
-//                Pengumuman.setText("Nama atau Password yang anda masukan salah" + namaInput);             
-//            }                      
-//            stat.close();       
-//        }
-//        catch(SQLException se){
-//             se.printStackTrace();
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();     
-//            Pengumuman.setText("Exception occurred while searching in the users table");
-//        }                   
     }//GEN-LAST:event_masukActionPerformed
 
     public void masuk (){
-        
+ 
         try {
             int no=1;
            Connect db = new Connect();
@@ -262,13 +196,11 @@ public class Login extends javax.swing.JFrame {
                 
                 if(dbasePassword.equals(enteredPassword)){
                     if(dbaseName.equals(enteredName)){
-                        Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
-                        obj.setVisible(true);
-                         dispose();
-                    }
-                    Menu_Petugas_Profile obj=new Menu_Petugas_Profile();
+                        Menu_Petugas_Utama obj=new Menu_Petugas_Utama();
                     obj.setVisible(true);
-                   dispose();
+                    dispose();
+                    }
+                    
                 }
                 else{
                     Pengumuman.setText("Nama atau Password yang anda masukan salah");
@@ -294,14 +226,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane,"Nama = admin, Password = admin");
     }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_namaActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void masukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masukMouseEntered
         // TODO add your handling code here:
