@@ -22,6 +22,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
     
     private DefaultTableModel model;
     public int banyak;
+                Connect c = new Connect ();
     /**
      * Creates new form Menu
      */
@@ -71,6 +72,8 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
         FBuku = new javax.swing.JComboBox<>();
         FPinjam = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        NamaPeminjam = new javax.swing.JTextField();
+        NamaBuku = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -93,7 +96,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Menu Utama Petugas");
         panelJudul.add(jLabel1);
-        jLabel1.setBounds(27, 12, 250, 40);
+        jLabel1.setBounds(30, 20, 250, 40);
 
         panelUtama.add(panelJudul);
         panelJudul.setBounds(0, 0, 720, 90);
@@ -177,6 +180,11 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
         panelNavBar.setBounds(0, 90, 150, 550);
 
         panelAwal.setBackground(new java.awt.Color(33, 33, 33));
+        panelAwal.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelAwalMouseMoved(evt);
+            }
+        });
         panelAwal.setLayout(null);
 
         Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
@@ -184,7 +192,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
         Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Profile.setText("P I N J A M A N");
         panelAwal.add(Profile);
-        Profile.setBounds(0, 0, 550, 70);
+        Profile.setBounds(0, 0, 550, 50);
 
         TableBuku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,37 +213,37 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TableBuku);
 
         panelAwal.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 370, 500, 150);
+        jScrollPane1.setBounds(10, 290, 550, 250);
 
         IDPeminjaman.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         IDPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
         IDPeminjaman.setText("ID Peminjaman");
         panelAwal.add(IDPeminjaman);
-        IDPeminjaman.setBounds(50, 100, 140, 25);
+        IDPeminjaman.setBounds(20, 70, 100, 25);
 
         IDBuku.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         IDBuku.setForeground(new java.awt.Color(255, 255, 255));
         IDBuku.setText("Buku");
         panelAwal.add(IDBuku);
-        IDBuku.setBounds(50, 140, 140, 25);
+        IDBuku.setBounds(20, 110, 100, 25);
 
         IDMember.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         IDMember.setForeground(new java.awt.Color(255, 255, 255));
         IDMember.setText("Nama Peminjam");
         panelAwal.add(IDMember);
-        IDMember.setBounds(50, 180, 140, 25);
+        IDMember.setBounds(20, 150, 100, 25);
 
         TglPinjam.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         TglPinjam.setForeground(new java.awt.Color(255, 255, 255));
-        TglPinjam.setText("Tanggal Peminjaman");
+        TglPinjam.setText("Tgl Peminjaman");
         panelAwal.add(TglPinjam);
-        TglPinjam.setBounds(50, 220, 140, 25);
+        TglPinjam.setBounds(20, 190, 100, 25);
 
         JatuhTempo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         JatuhTempo.setForeground(new java.awt.Color(255, 255, 255));
-        JatuhTempo.setText("Tanggal Jatuh Tempo");
+        JatuhTempo.setText("Tgl Jatuh Tempo");
         panelAwal.add(JatuhTempo);
-        JatuhTempo.setBounds(50, 260, 140, 25);
+        JatuhTempo.setBounds(20, 230, 100, 25);
 
         FTanggalPinjam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,7 +251,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
             }
         });
         panelAwal.add(FTanggalPinjam);
-        FTanggalPinjam.setBounds(210, 220, 200, 25);
+        FTanggalPinjam.setBounds(130, 190, 200, 25);
 
         FJatuhTempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +259,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
             }
         });
         panelAwal.add(FJatuhTempo);
-        FJatuhTempo.setBounds(210, 260, 200, 25);
+        FJatuhTempo.setBounds(130, 230, 200, 25);
 
         Clear.setBackground(new java.awt.Color(49, 44, 81));
         Clear.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,7 +270,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
             }
         });
         panelAwal.add(Clear);
-        Clear.setBounds(440, 220, 100, 25);
+        Clear.setBounds(450, 230, 100, 25);
 
         Tambah.setBackground(new java.awt.Color(49, 44, 81));
         Tambah.setForeground(new java.awt.Color(255, 255, 255));
@@ -273,7 +281,7 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
             }
         });
         panelAwal.add(Tambah);
-        Tambah.setBounds(440, 100, 100, 25);
+        Tambah.setBounds(340, 190, 100, 25);
 
         Hapus.setBackground(new java.awt.Color(49, 44, 81));
         Hapus.setForeground(new java.awt.Color(255, 255, 255));
@@ -284,21 +292,26 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
             }
         });
         panelAwal.add(Hapus);
-        Hapus.setBounds(440, 140, 100, 25);
+        Hapus.setBounds(450, 190, 100, 25);
 
         Update.setBackground(new java.awt.Color(49, 44, 81));
         Update.setForeground(new java.awt.Color(255, 255, 255));
         Update.setText("Update");
+        Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateMouseClicked(evt);
+            }
+        });
         panelAwal.add(Update);
-        Update.setBounds(440, 180, 100, 25);
+        Update.setBounds(340, 230, 100, 25);
 
         FMember.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelAwal.add(FMember);
-        FMember.setBounds(210, 180, 200, 24);
+        FMember.setBounds(130, 150, 200, 24);
 
         FBuku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelAwal.add(FBuku);
-        FBuku.setBounds(210, 140, 200, 24);
+        FBuku.setBounds(130, 110, 200, 24);
 
         FPinjam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,13 +319,21 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
             }
         });
         panelAwal.add(FPinjam);
-        FPinjam.setBounds(210, 100, 200, 25);
+        FPinjam.setBounds(130, 70, 200, 25);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Format Tanggal : YYYY-MM-DD");
         panelAwal.add(jLabel2);
-        jLabel2.setBounds(210, 300, 200, 30);
+        jLabel2.setBounds(130, 260, 200, 25);
+
+        NamaPeminjam.setEditable(false);
+        panelAwal.add(NamaPeminjam);
+        NamaPeminjam.setBounds(340, 150, 210, 25);
+
+        NamaBuku.setEditable(false);
+        panelAwal.add(NamaBuku);
+        NamaBuku.setBounds(340, 110, 210, 25);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
@@ -397,12 +418,23 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
         // TODO add your handling code here:
         tambah();
         load();
-        kosong();
     }//GEN-LAST:event_TambahMouseClicked
 
     private void FPinjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FPinjamActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FPinjamActionPerformed
+
+    private void panelAwalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAwalMouseMoved
+        // TODO add your handling code here:    
+        tampilNamaBuku();
+        tampilNamaMember();
+    }//GEN-LAST:event_panelAwalMouseMoved
+
+    private void UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseClicked
+        // TODO add your handling code here:
+        update();
+        load();
+    }//GEN-LAST:event_UpdateMouseClicked
 
     public void tampilrecord(java.awt.event.MouseEvent evt){
         //menampilkan record yg di click kedalam text field
@@ -430,7 +462,6 @@ public class Menu_Petugas_Peminjaman extends javax.swing.JFrame {
     
        public void hapus(){
            try {
-            Connect c = new Connect();
             String sql ="delete from peminjaman where ID_Peminjaman='"+FPinjam.getText()+"'";
             java.sql.Connection conn=(Connection) c.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
@@ -453,8 +484,7 @@ public void load(){
 
      try{
            //membuat statemen pemanggilan data pada table tblGaji dari database
-           Connect db = new Connect();
-           Statement stat = (Statement) db.getConnection().createStatement();;
+           Statement stat = (Statement) c.getConnection().createStatement();;
            String sql        = "Select * from peminjaman";
            ResultSet res   = stat.executeQuery(sql);
 
@@ -476,7 +506,6 @@ public void load(){
 }
 public void tambah(){
             try {
-                Connect c = new Connect();
             String sql;
             sql = "INSERT INTO peminjaman VALUES ('"+FPinjam.getText()+"','"+FBuku.getSelectedItem()+"','"+FMember.getSelectedItem()+"','"+FTanggalPinjam.getText()+"','"+FJatuhTempo.getText()+"')";
             java.sql.Connection conn=(Connection) c.getConnection();
@@ -487,16 +516,28 @@ public void tambah(){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
 }
+    public void update() {
 
+        try {
+            String sql;
+            sql = "UPDATE peminjaman SET ID_Peminjaman = '" + FPinjam.getText() + "', ID_Buku = '" + FBuku.getSelectedItem() + "',ID_Member= '" + FMember.getSelectedItem() + "',Tgl_Peminjaman= '" + FTanggalPinjam.getText() + "' ,Deadline_Pinjam= '" + FJatuhTempo.getText() + "' WHERE ID_Peminjaman = '" + FPinjam.getText() + "'";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil di Ubah");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+    }
 
 public void tampilBuku()
     { 
         // nampilin isi item di combo box id_buku 
         try {
-            Connect c = new Connect ();
+
         Connection con = c.getConnection();
             try (Statement stt = con.createStatement()) {
-                String sql = "select Judul_Buku from peminjaman right join buku on peminjaman.ID_Buku = buku.ID_Buku";           
+                String sql = "select ID_Buku from buku ";           
             try (ResultSet res = stt.executeQuery(sql) ) {        
                 FBuku.removeAllItems();
                 while(res.next()){                 
@@ -512,6 +553,21 @@ public void tampilBuku()
         }
     }
 
+    public void tampilNamaBuku() {
+        try {
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "SELECT Judul_Buku FROM buku WHERE ID_Buku = '" + FBuku.getSelectedItem() + "'";
+            ResultSet rs = stat.executeQuery(sql);
+
+            if (rs.next()) {
+                String ID = rs.getString("Judul_Buku");
+                NamaBuku.setText(ID);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
 public void tampilMember()
     { 
         // nampilin isi item di combo box id_buku 
@@ -519,7 +575,7 @@ public void tampilMember()
             Connect c = new Connect ();
         Connection con = c.getConnection();
             try (Statement stt = con.createStatement()) {
-                String sql = "select Nama from peminjaman right join anggota on peminjaman.ID_Member = anggota.ID_Anggota";           
+                String sql = "select ID_Anggota from anggota ";           
             try (ResultSet res = stt.executeQuery(sql) ) {        
                 FMember.removeAllItems();
                 while(res.next()){                 
@@ -532,6 +588,21 @@ public void tampilMember()
             } 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void tampilNamaMember() {
+        try {
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "SELECT Nama FROM anggota WHERE ID_Anggota = '" + FMember.getSelectedItem() + "'";
+            ResultSet rs = stat.executeQuery(sql);
+
+            if (rs.next()) {
+                String ID = rs.getString("Nama");
+                NamaPeminjam.setText(ID);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     /**
@@ -582,6 +653,8 @@ public void tampilMember()
     private javax.swing.JLabel IDMember;
     private javax.swing.JLabel IDPeminjaman;
     private javax.swing.JLabel JatuhTempo;
+    private javax.swing.JTextField NamaBuku;
+    private javax.swing.JTextField NamaPeminjam;
     private javax.swing.JLabel Profile;
     private javax.swing.JTable TableBuku;
     private javax.swing.JButton Tambah;

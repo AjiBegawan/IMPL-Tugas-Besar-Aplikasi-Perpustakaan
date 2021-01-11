@@ -1,36 +1,40 @@
 
 import java.awt.HeadlessException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author indiz
  */
 public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
 
-    
-    
     private DefaultTableModel model;
     public int banyak;
+    Connect c = new Connect();
+    String buku1, buku2;
+
     /**
      * Creates new form Menu
      */
-    public Menu_Petugas_Pengembalian()  {
+    public Menu_Petugas_Pengembalian() {
         initComponents();
 
         tampilBuku();
+        //       tampilNamaBuku();
         tampilMember();
         tampilPinjam();
+        tampilPetugas();
         load();
     }
 
@@ -80,6 +84,9 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         FTanggalPinjam = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabelKembali = new javax.swing.JTable();
+        NamaPetugas = new javax.swing.JTextField();
+        NamaBuku = new javax.swing.JTextField();
+        NamaMember = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,6 +206,11 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         panelNavBar.setBounds(0, 90, 150, 550);
 
         panelAwal.setBackground(new java.awt.Color(33, 33, 33));
+        panelAwal.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelAwalMouseMoved(evt);
+            }
+        });
         panelAwal.setLayout(null);
 
         Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
@@ -212,31 +224,31 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         IDPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
         IDPeminjaman.setText("ID Pengembalian");
         panelAwal.add(IDPeminjaman);
-        IDPeminjaman.setBounds(20, 80, 140, 25);
+        IDPeminjaman.setBounds(20, 80, 110, 25);
 
         IDBuku.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         IDBuku.setForeground(new java.awt.Color(255, 255, 255));
         IDBuku.setText("Buku");
         panelAwal.add(IDBuku);
-        IDBuku.setBounds(20, 160, 140, 25);
+        IDBuku.setBounds(20, 160, 110, 25);
 
         IDMember.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         IDMember.setForeground(new java.awt.Color(255, 255, 255));
         IDMember.setText("Nama Peminjam");
         panelAwal.add(IDMember);
-        IDMember.setBounds(20, 200, 140, 25);
+        IDMember.setBounds(20, 200, 110, 25);
 
         TglPinjam.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         TglPinjam.setForeground(new java.awt.Color(255, 255, 255));
         TglPinjam.setText("Denda");
         panelAwal.add(TglPinjam);
-        TglPinjam.setBounds(20, 360, 140, 25);
+        TglPinjam.setBounds(20, 360, 110, 25);
 
         JatuhTempo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         JatuhTempo.setForeground(new java.awt.Color(255, 255, 255));
-        JatuhTempo.setText("Tanggal Jatuh Tempo");
+        JatuhTempo.setText("Tgl Jatuh Tempo");
         panelAwal.add(JatuhTempo);
-        JatuhTempo.setBounds(20, 280, 140, 25);
+        JatuhTempo.setBounds(20, 280, 110, 25);
 
         FDenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +256,7 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
             }
         });
         panelAwal.add(FDenda);
-        FDenda.setBounds(170, 360, 200, 25);
+        FDenda.setBounds(140, 360, 200, 25);
 
         FJatuhTempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,7 +264,7 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
             }
         });
         panelAwal.add(FJatuhTempo);
-        FJatuhTempo.setBounds(170, 280, 200, 25);
+        FJatuhTempo.setBounds(140, 280, 200, 25);
 
         Clear.setBackground(new java.awt.Color(49, 44, 81));
         Clear.setForeground(new java.awt.Color(255, 255, 255));
@@ -263,7 +275,7 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
             }
         });
         panelAwal.add(Clear);
-        Clear.setBounds(430, 200, 100, 25);
+        Clear.setBounds(470, 320, 90, 25);
 
         Tambah.setBackground(new java.awt.Color(49, 44, 81));
         Tambah.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,7 +286,7 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
             }
         });
         panelAwal.add(Tambah);
-        Tambah.setBounds(430, 80, 100, 25);
+        Tambah.setBounds(360, 280, 90, 25);
 
         Hapus.setBackground(new java.awt.Color(49, 44, 81));
         Hapus.setForeground(new java.awt.Color(255, 255, 255));
@@ -285,61 +297,61 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
             }
         });
         panelAwal.add(Hapus);
-        Hapus.setBounds(430, 120, 100, 25);
+        Hapus.setBounds(470, 280, 90, 25);
 
         Update.setBackground(new java.awt.Color(49, 44, 81));
         Update.setForeground(new java.awt.Color(255, 255, 255));
         Update.setText("Update");
+        Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateMouseClicked(evt);
+            }
+        });
         panelAwal.add(Update);
-        Update.setBounds(430, 160, 100, 25);
+        Update.setBounds(360, 320, 90, 25);
 
         FMember.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelAwal.add(FMember);
-        FMember.setBounds(170, 200, 200, 24);
+        FMember.setBounds(140, 200, 200, 24);
 
         FBuku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelAwal.add(FBuku);
-        FBuku.setBounds(170, 160, 200, 24);
-
-        FKembali.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FKembaliActionPerformed(evt);
-            }
-        });
+        FBuku.setBounds(140, 160, 200, 24);
         panelAwal.add(FKembali);
-        FKembali.setBounds(170, 80, 200, 25);
+        FKembali.setBounds(140, 80, 200, 25);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Format Tanggal : YYYY-MM-DD");
         panelAwal.add(jLabel2);
-        jLabel2.setBounds(390, 250, 175, 30);
+        jLabel2.setBounds(350, 360, 210, 25);
 
         IDPeminjaman1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         IDPeminjaman1.setForeground(new java.awt.Color(255, 255, 255));
         IDPeminjaman1.setText("ID Peminjaman");
         panelAwal.add(IDPeminjaman1);
-        IDPeminjaman1.setBounds(20, 120, 140, 25);
+        IDPeminjaman1.setBounds(20, 120, 110, 25);
 
         FPinjam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelAwal.add(FPinjam);
-        FPinjam.setBounds(170, 120, 200, 24);
+        FPinjam.setBounds(140, 120, 200, 24);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nama Petugas");
         panelAwal.add(jLabel3);
-        jLabel3.setBounds(20, 240, 140, 25);
+        jLabel3.setBounds(20, 240, 110, 25);
 
         FPetugas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelAwal.add(FPetugas);
-        FPetugas.setBounds(170, 240, 200, 24);
+        FPetugas.setBounds(140, 240, 200, 24);
 
         TglPinjam1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         TglPinjam1.setForeground(new java.awt.Color(255, 255, 255));
-        TglPinjam1.setText("Tanggal Pengembalian");
+        TglPinjam1.setText("Tgl Pengembalian");
         panelAwal.add(TglPinjam1);
-        TglPinjam1.setBounds(20, 320, 140, 25);
+        TglPinjam1.setBounds(20, 320, 110, 25);
 
         FTanggalPinjam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,7 +359,7 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
             }
         });
         panelAwal.add(FTanggalPinjam);
-        FTanggalPinjam.setBounds(170, 320, 200, 25);
+        FTanggalPinjam.setBounds(140, 320, 200, 25);
 
         TabelKembali.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -368,7 +380,24 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         jScrollPane2.setViewportView(TabelKembali);
 
         panelAwal.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 400, 550, 140);
+        jScrollPane2.setBounds(10, 400, 550, 150);
+
+        NamaPetugas.setEditable(false);
+        panelAwal.add(NamaPetugas);
+        NamaPetugas.setBounds(360, 240, 200, 25);
+
+        NamaBuku.setEditable(false);
+        panelAwal.add(NamaBuku);
+        NamaBuku.setBounds(360, 160, 200, 25);
+
+        NamaMember.setEditable(false);
+        NamaMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NamaMemberActionPerformed(evt);
+            }
+        });
+        panelAwal.add(NamaMember);
+        NamaMember.setBounds(360, 200, 200, 25);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
@@ -446,12 +475,7 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         // TODO add your handling code here:
         tambah();
         load();
-        kosong();
     }//GEN-LAST:event_TambahMouseClicked
-
-    private void FKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FKembaliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FKembaliActionPerformed
 
     private void FTanggalPinjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTanggalPinjamActionPerformed
         // TODO add your handling code here:
@@ -463,17 +487,33 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         load();
     }//GEN-LAST:event_TabelKembaliMouseClicked
 
-    public void tampilrecord(java.awt.event.MouseEvent evt){
+    private void NamaMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NamaMemberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NamaMemberActionPerformed
+
+    private void panelAwalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAwalMouseMoved
+        // TODO add your handling code here:
+        tampilNamaBuku();
+        tampilNamaMember();
+        tampilNamaPetugas();
+    }//GEN-LAST:event_panelAwalMouseMoved
+
+    private void UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseClicked
+        update();
+        load();
+    }//GEN-LAST:event_UpdateMouseClicked
+
+    public void tampilrecord(java.awt.event.MouseEvent evt) {
         //menampilkan record yg di click kedalam text field
         int baris = TabelKembali.rowAtPoint(evt.getPoint());
-        String a =TabelKembali.getValueAt(baris, 0).toString();
+        String a = TabelKembali.getValueAt(baris, 0).toString();
         FKembali.setText(a);
-        String b = TabelKembali.getValueAt(baris,1).toString();
-        FPinjam.setSelectedItem(b);       
+        String b = TabelKembali.getValueAt(baris, 1).toString();
+        FPinjam.setSelectedItem(b);
         String c = TabelKembali.getValueAt(baris, 2).toString();
         FBuku.setSelectedItem(c);
-        String d = TabelKembali.getValueAt(baris,3).toString();
-        FMember.setSelectedItem(d);       
+        String d = TabelKembali.getValueAt(baris, 3).toString();
+        FMember.setSelectedItem(d);
         String e = TabelKembali.getValueAt(baris, 4).toString();
         FPetugas.setSelectedItem(e);
         String f = TabelKembali.getValueAt(baris, 5).toString();
@@ -484,31 +524,33 @@ public class Menu_Petugas_Pengembalian extends javax.swing.JFrame {
         FDenda.setText(h);
     }
 
-       private void kosong(){
-    // menghapus data di textfield yg input
+    private void kosong() {
+        // menghapus data di textfield yg input
         FKembali.setText(null);
+        FPinjam.setSelectedItem(null);
         FBuku.setSelectedItem(null);
         FMember.setSelectedItem(null);
-        FDenda.setText(null);  
-        FJatuhTempo.setText(null);  
-    } 
-    
-       public void hapus(){
-           try {
-            Connect c = new Connect();
-            String sql ="delete from pengembalian where ID_Pengembalian='"+FKembali.getText()+"'";
-            java.sql.Connection conn=(Connection) c.getConnection();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+        FPetugas.setSelectedItem(null);
+        FDenda.setText(null);
+        FJatuhTempo.setText(null);
+        FTanggalPinjam.setText(null);
+    }
+
+    public void hapus() {
+        try {
+            String sql = "delete from pengembalian where ID_Pengembalian='" + FKembali.getText() + "'";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this, "Berhasil di Hapus");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-       }
-       
-public void load(){
-     //menghapus isi table tblGaji
-        model =new DefaultTableModel();
+    }
+
+    public void load() {
+        //menghapus isi table tblGaji
+        model = new DefaultTableModel();
         TabelKembali.setModel(model);
         model.addColumn("ID Pengembalian");
         model.addColumn("ID Peminjaman");
@@ -519,115 +561,197 @@ public void load(){
         model.addColumn("Tanggal Pengembalian");
         model.addColumn("Denda");
 
-     try{
-           //membuat statemen pemanggilan data pada table tblGaji dari database
-           Connect db = new Connect();
-           Statement stat = (Statement) db.getConnection().createStatement();;
-           String sql        = "Select * from pengembalian";
-           ResultSet res   = stat.executeQuery(sql);
+        try {
+            //membuat statemen pemanggilan data pada table tblGaji dari database
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "Select * from pengembalian";
+            ResultSet res = stat.executeQuery(sql);
 
-           //penelusuran baris pada tabel tblGaji dari database
-           while(res.next ()){
-                Object[ ] obj = new Object[10];
-                obj[0] = res.getString("ID_Pengembalian"); 
+            //penelusuran baris pada tabel tblGaji dari database
+            while (res.next()) {
+                Object[] obj = new Object[10];
+                obj[0] = res.getString("ID_Pengembalian");
                 obj[1] = res.getString("ID_Peminjaman");
-                obj[2] = res.getString("ID_Buku"); 
+                obj[2] = res.getString("ID_Buku");
                 obj[3] = res.getString("ID_Anggota");
                 obj[4] = res.getString("ID_Petugas");
                 obj[5] = res.getString("Deadline_Pinjam");
-                obj[6] = res.getString("Tgl_Pengembalian"); 
+                obj[6] = res.getString("Tgl_Pengembalian");
                 obj[7] = res.getString("Denda");
-         
+
                 model.addRow(obj);
             }
-      }catch(SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage() );
-      }
-     banyak = model.getRowCount();
-}
-public void tambah(){
-            try {
-                Connect c = new Connect();
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+        banyak = model.getRowCount();
+    }
+
+    public void tambah() {
+        try {
+
             String sql;
-            sql = "INSERT INTO peminjaman VALUES ('"+FKembali.getText()+"','"+FBuku.getSelectedItem()+"','"+FMember.getSelectedItem()+"','"+FDenda.getText()+"','"+FJatuhTempo.getText()+"')";
-            java.sql.Connection conn=(Connection) c.getConnection();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            sql = "INSERT INTO pengembalian VALUES ('" + FKembali.getText() + "','" + FPinjam.getSelectedItem() + "','" + FBuku.getSelectedItem() + "','" + FMember.getSelectedItem() + "','" + FPetugas.getSelectedItem() + "','" + FJatuhTempo.getText() + "','" + FTanggalPinjam.getText() + "','" + FDenda.getText() + "')";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-}
+    }
 
-public void tampilPinjam()
-    { 
+    public void update() {
+
+        try {
+            String sql;
+            sql = "UPDATE pengembalian SET ID_Pengembalian = '" + FKembali.getText() + "', ID_Peminjaman = '" + FPinjam.getSelectedItem() + "',ID_Buku= '" + FBuku.getSelectedItem() + "',ID_Anggota= '" + FMember.getSelectedItem() + "' ,ID_Petugas= '" + FPetugas.getSelectedItem() + "',Deadline_Pinjam= '" + FJatuhTempo.getText() + "', Tgl_Pengembalian ='" + FTanggalPinjam.getText() + "', Denda = '" + FDenda.getText() + "' WHERE ID_Pengembalian = '" + FKembali.getText() + "'";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil di Ubah");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+    }
+
+    public void tampilPinjam() {
         // nampilin isi item di combo box id_buku 
         try {
-            Connect c = new Connect ();
-        Connection con = c.getConnection();
+            Connection con = c.getConnection();
             try (Statement stt = con.createStatement()) {
-                String sql = "select ID_Peminjaman from peminjaman order by ID_Peminjaman asc";           
-            try (ResultSet res = stt.executeQuery(sql) ) {        
-                FPinjam.removeAllItems();
-                while(res.next()){                 
-                    Object[] ob = new Object[3];
-                    ob[1] = res.getString(1);
-                    FPinjam.addItem((String) ob[1]);     
+                String sql = "select ID_Peminjaman from peminjaman order by ID_Peminjaman asc";
+                try (ResultSet res = stt.executeQuery(sql)) {
+                    FPinjam.removeAllItems();
+                    while (res.next()) {
+                        Object[] ob = new Object[3];
+                        ob[1] = res.getString(1);
+                        FPinjam.addItem((String) ob[1]);
+                    }
+                    res.close();
+                    stt.close();
                 }
-                 res.close(); stt.close();
             }
-            } 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-
-public void tampilBuku()
-    { 
+    public void tampilBuku() {
         // nampilin isi item di combo box id_buku 
         try {
-            Connect c = new Connect ();
-        Connection con = c.getConnection();
+            Connection con = c.getConnection();
             try (Statement stt = con.createStatement()) {
-                String sql = "select Judul_Buku from peminjaman right join buku on peminjaman.ID_Buku = buku.ID_Buku";           
-            try (ResultSet res = stt.executeQuery(sql) ) {        
-                FBuku.removeAllItems();
-                while(res.next()){                 
-                    Object[] ob = new Object[3];
-                    ob[1] = res.getString(1);
-                    FBuku.addItem((String) ob[1]);     
+                String sql = "select ID_Buku, Judul_Buku from buku order by ID_Buku asc";
+                try (ResultSet res = stt.executeQuery(sql)) {
+                    FBuku.removeAllItems();
+                    while (res.next()) {
+                        Object[] ob = new Object[3];
+                        ob[1] = res.getString(1);
+                        ob[2] = res.getString(2);
+                        
+                        buku1 = String.valueOf(ob[1]);
+                        buku2 = String.valueOf(ob[2]);
+                        FBuku.addItem(String.valueOf(ob[1]));
+                    }
+                    res.close();
+                    stt.close();
                 }
-                 res.close(); stt.close();
             }
-            } 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-public void tampilMember()
-    { 
+    public void tampilNamaBuku() {
+        try {
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "SELECT Judul_Buku FROM buku WHERE ID_Buku = '" + FBuku.getSelectedItem() + "'";
+            ResultSet rs = stat.executeQuery(sql);
+
+            if (rs.next()) {
+                String ID = rs.getString("Judul_Buku");
+                NamaBuku.setText(ID);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void tampilMember() {
         // nampilin isi item di combo box id_buku 
         try {
-            Connect c = new Connect ();
-        Connection con = c.getConnection();
+            Connection con = c.getConnection();
             try (Statement stt = con.createStatement()) {
-                String sql = "select Nama from peminjaman right join anggota on peminjaman.ID_Member = anggota.ID_Anggota";           
-            try (ResultSet res = stt.executeQuery(sql) ) {        
-                FMember.removeAllItems();
-                while(res.next()){                 
-                    Object[] ob = new Object[3];
-                    ob[1] = res.getString(1);
-                    FMember.addItem((String) ob[1]);     
+                String sql = "select ID_Anggota from anggota order by ID_anggota asc";
+                try (ResultSet res = stt.executeQuery(sql)) {
+                    FMember.removeAllItems();
+                    while (res.next()) {
+                        Object[] ob = new Object[3];
+                        ob[1] = res.getString(1);
+                        FMember.addItem((String) ob[1]);
+                    }
+                    res.close();
+                    stt.close();
                 }
-                 res.close(); stt.close();
             }
-            } 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    public void tampilNamaMember() {
+        try {
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "SELECT Nama FROM anggota WHERE ID_Anggota = '" + FMember.getSelectedItem() + "'";
+            ResultSet rs = stat.executeQuery(sql);
+
+            if (rs.next()) {
+                String ID = rs.getString("Nama");
+                NamaMember.setText(ID);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void tampilPetugas() {
+        // nampilin isi item di combo box id_buku 
+        try {
+            Connection con = c.getConnection();
+            try (Statement stt = con.createStatement()) {
+                String sql = "select ID_Petugas from petugas";
+                try (ResultSet res = stt.executeQuery(sql)) {
+                    FPetugas.removeAllItems();
+                    while (res.next()) {
+                        Object[] ob = new Object[3];
+                        ob[1] = res.getString(1);
+                        FPetugas.addItem((String) ob[1]);
+                    }
+                    res.close();
+                    stt.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void tampilNamaPetugas() {
+        try {
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "select Nama from petugas WHERE ID_Petugas = '" + FPetugas.getSelectedItem() + "'";
+            ResultSet rs = stat.executeQuery(sql);
+
+            if (rs.next()) {
+                String ID = rs.getString("Nama");
+                NamaPetugas.setText(ID);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -680,6 +804,9 @@ public void tampilMember()
     private javax.swing.JLabel IDPeminjaman;
     private javax.swing.JLabel IDPeminjaman1;
     private javax.swing.JLabel JatuhTempo;
+    private javax.swing.JTextField NamaBuku;
+    private javax.swing.JTextField NamaMember;
+    private javax.swing.JTextField NamaPetugas;
     private javax.swing.JLabel Profile;
     private javax.swing.JTable TabelKembali;
     private javax.swing.JButton Tambah;
@@ -704,5 +831,4 @@ public void tampilMember()
     private javax.swing.JButton profileBtn;
     // End of variables declaration//GEN-END:variables
 
-    
 }
