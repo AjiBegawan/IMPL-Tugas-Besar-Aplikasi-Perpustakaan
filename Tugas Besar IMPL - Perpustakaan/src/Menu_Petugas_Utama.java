@@ -2,6 +2,7 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,6 +19,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
     
     
     private DefaultTableModel model;
+    public int banyak;
     /**
      * Creates new form Menu
      */
@@ -25,10 +27,17 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         initComponents();
 
           load();
+          loadAnggota();
+          
         
           Menu_Petugas_Katalog MPK = new Menu_Petugas_Katalog();
+          Menu_Petugas_Peminjaman MPP = new Menu_Petugas_Peminjaman();
+          Menu_Petugas_Pengembalian MPPe = new Menu_Petugas_Pengembalian();
 
-          FieldKatalog.setText(String.valueOf(MPK.banyak));
+          JBuku.setText(String.valueOf("= " + MPK.banyak));
+          JPeminjaman.setText(String.valueOf("= " + MPP.banyak));
+          JPengembalian.setText(String.valueOf("= " + MPPe.banyak));
+          JAnggota.setText(String.valueOf("= " + banyak));
           
     }
 
@@ -51,8 +60,15 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         peminjamanBtn = new javax.swing.JButton();
         laporanBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TabelAnggota = new javax.swing.JTable();
         panelAwal = new javax.swing.JPanel();
         Profile = new javax.swing.JLabel();
+        JLaporan = new javax.swing.JLabel();
+        JPengembalian = new javax.swing.JLabel();
+        JBuku = new javax.swing.JLabel();
+        JAnggota = new javax.swing.JLabel();
+        JPeminjaman = new javax.swing.JLabel();
         FieldProfile = new javax.swing.JLabel();
         FieldKatalog = new javax.swing.JLabel();
         FieldPengembalian = new javax.swing.JLabel();
@@ -160,6 +176,22 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         panelNavBar.add(logoutBtn);
         logoutBtn.setBounds(0, 490, 150, 25);
 
+        TabelAnggota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(TabelAnggota);
+
+        panelNavBar.add(jScrollPane2);
+        jScrollPane2.setBounds(130, 500, 10, 10);
+
         panelUtama.add(panelNavBar);
         panelNavBar.setBounds(0, 90, 150, 550);
 
@@ -173,45 +205,65 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         panelAwal.add(Profile);
         Profile.setBounds(0, 0, 550, 70);
 
+        JLaporan.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
+        JLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        panelAwal.add(JLaporan);
+        JLaporan.setBounds(390, 270, 120, 60);
+
+        JPengembalian.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
+        JPengembalian.setForeground(new java.awt.Color(255, 255, 255));
+        panelAwal.add(JPengembalian);
+        JPengembalian.setBounds(390, 450, 120, 60);
+
+        JBuku.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
+        JBuku.setForeground(new java.awt.Color(255, 255, 255));
+        panelAwal.add(JBuku);
+        JBuku.setBounds(390, 180, 120, 60);
+
+        JAnggota.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
+        JAnggota.setForeground(new java.awt.Color(255, 255, 255));
+        panelAwal.add(JAnggota);
+        JAnggota.setBounds(390, 90, 120, 60);
+
+        JPeminjaman.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
+        JPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
+        panelAwal.add(JPeminjaman);
+        JPeminjaman.setBounds(390, 360, 120, 60);
+
         FieldProfile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldProfile.setForeground(new java.awt.Color(255, 255, 255));
         FieldProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-customer-90.png"))); // NOI18N
-        FieldProfile.setText("untukProfile");
-        FieldProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        FieldProfile.setText("Anggota");
         panelAwal.add(FieldProfile);
-        FieldProfile.setBounds(20, 80, 300, 80);
+        FieldProfile.setBounds(20, 80, 500, 80);
 
         FieldKatalog.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldKatalog.setForeground(new java.awt.Color(255, 255, 255));
         FieldKatalog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-book-90.png"))); // NOI18N
-        FieldKatalog.setText("untukKatalog");
-        FieldKatalog.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        FieldKatalog.setText("Buku     ");
         panelAwal.add(FieldKatalog);
-        FieldKatalog.setBounds(20, 170, 300, 80);
+        FieldKatalog.setBounds(20, 170, 500, 80);
 
         FieldPengembalian.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldPengembalian.setForeground(new java.awt.Color(255, 255, 255));
         FieldPengembalian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-borrow-book-90.png"))); // NOI18N
-        FieldPengembalian.setText("untukPengembalian");
-        FieldPengembalian.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        FieldPengembalian.setText("Pengembalian");
         panelAwal.add(FieldPengembalian);
-        FieldPengembalian.setBounds(20, 440, 300, 80);
+        FieldPengembalian.setBounds(20, 440, 500, 80);
 
         FieldLaporan.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldLaporan.setForeground(new java.awt.Color(255, 255, 255));
         FieldLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-analyze-90.png"))); // NOI18N
-        FieldLaporan.setText("untukLaporan");
-        FieldLaporan.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        FieldLaporan.setText("Laporan");
         panelAwal.add(FieldLaporan);
-        FieldLaporan.setBounds(20, 260, 300, 80);
+        FieldLaporan.setBounds(20, 260, 500, 80);
 
         FieldPeminjaman.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
         FieldPeminjaman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-return-book-90.png"))); // NOI18N
-        FieldPeminjaman.setText("untukPeminjaman");
-        FieldPeminjaman.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        FieldPeminjaman.setText("Peminjaman");
         panelAwal.add(FieldPeminjaman);
-        FieldPeminjaman.setBounds(20, 350, 300, 80);
+        FieldPeminjaman.setBounds(20, 350, 500, 80);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
@@ -281,6 +333,42 @@ private void load(){
         } catch (SQLException e) { 
         }
 }
+
+public void loadAnggota(){
+     //menghapus isi table tblGaji
+        model =new DefaultTableModel();
+        TabelAnggota.setModel(model);
+        model.addColumn("ID Anggota");
+        model.addColumn("Nama ");
+        model.addColumn("TTL");
+        model.addColumn("Alamat");
+        model.addColumn("No Telepon");
+
+     try{
+           //membuat statemen pemanggilan data pada table tblGaji dari database
+           Connect db = new Connect();
+           Statement stat = (Statement) db.getConnection().createStatement();;
+           String sql        = "Select * from anggota";
+           ResultSet res   = stat.executeQuery(sql);
+
+           //penelusuran baris pada tabel tblGaji dari database
+           while(res.next ()){
+                Object[ ] obj = new Object[6];
+                obj[0] = res.getString("ID_Anggota"); 
+                obj[1] = res.getString("Nama");
+                obj[2] = res.getString("Tanggal_Lahir"); 
+                obj[3] = res.getString("Alamat");
+                obj[4] = res.getString("No_Telp");
+         
+                model.addRow(obj);
+            }
+           TabelAnggota.setVisible(false);
+      }catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage() );
+      }
+      banyak = model.getRowCount();
+
+}
     
     /**
      * @param args the command line arguments
@@ -324,8 +412,15 @@ private void load(){
     private javax.swing.JLabel FieldPeminjaman;
     private javax.swing.JLabel FieldPengembalian;
     private javax.swing.JLabel FieldProfile;
+    private javax.swing.JLabel JAnggota;
+    private javax.swing.JLabel JBuku;
+    private javax.swing.JLabel JLaporan;
+    private javax.swing.JLabel JPeminjaman;
+    private javax.swing.JLabel JPengembalian;
     private javax.swing.JLabel Profile;
+    private javax.swing.JTable TabelAnggota;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton laporanBtn;
     private javax.swing.JButton logoutBtn;
