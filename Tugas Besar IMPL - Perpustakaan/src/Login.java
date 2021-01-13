@@ -5,6 +5,7 @@
  */
 
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -75,7 +76,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(24, 77, 71));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("INI LOGIN");
+        jLabel2.setText("LOGIN");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(260, 50, 360, 40);
 
@@ -180,9 +181,10 @@ public class Login extends javax.swing.JFrame {
             int no=1;
            Connect db = new Connect();
            String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+getNama()+"' AND Password = '"+getPassword()+"' ";
-
+           
            Statement stat = (Statement) db.getConnection().createStatement();;
            ResultSet res= stat.executeQuery(sql);
+           
 
             if (res.next())
             {   
@@ -197,8 +199,12 @@ public class Login extends javax.swing.JFrame {
                 if(dbasePassword.equals(enteredPassword)){
                     if(dbaseName.equals(enteredName)){
                         Menu_Petugas_Utama obj=new Menu_Petugas_Utama();
-                    obj.setVisible(true);
-                    dispose();
+                        String sql1 ="UPDATE petugas SET Session = 1 WHERE Nama = '"+getNama()+"' ";
+                        java.sql.Connection db1=(Connection) db.getConnection();
+                        java.sql.PreparedStatement pst=db1.prepareStatement(sql1);
+                        pst.execute();
+                        obj.setVisible(true);
+                        dispose();
                     }
                     
                 }
