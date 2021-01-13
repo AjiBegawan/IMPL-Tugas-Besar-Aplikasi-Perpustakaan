@@ -75,7 +75,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(24, 77, 71));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("INI LOGIN");
+        jLabel2.setText("LOGIN");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(260, 50, 360, 40);
 
