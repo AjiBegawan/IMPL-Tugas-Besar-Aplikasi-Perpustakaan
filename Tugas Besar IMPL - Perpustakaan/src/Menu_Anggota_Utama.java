@@ -53,6 +53,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        VISI1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MENU UTAMA");
@@ -157,7 +158,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         panelAwal1.setBackground(new java.awt.Color(0, 51, 51));
         panelAwal1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 2));
 
-        Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
         Profile.setForeground(new java.awt.Color(255, 255, 255));
         Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Profile.setText("W E L C O M E");
@@ -183,11 +184,11 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("serta mampu menggali ilmu, pengetahuan,dan teknologi melalui budaya baca”");
 
-        VISI.setBackground(new java.awt.Color(255, 153, 51));
+        VISI.setBackground(new java.awt.Color(0, 204, 0));
         VISI.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        VISI.setForeground(new java.awt.Color(255, 204, 0));
+        VISI.setForeground(new java.awt.Color(0, 153, 0));
         VISI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        VISI.setText("VISI");
+        VISI.setText("PERPUSTAKAAN UNJANI");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,58 +239,64 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setText("    bahan pustaka secara tepat guna. ");
 
+        VISI1.setBackground(new java.awt.Color(255, 153, 51));
+        VISI1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        VISI1.setForeground(new java.awt.Color(255, 204, 0));
+        VISI1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        VISI1.setText("VISI");
+
         javax.swing.GroupLayout panelAwal1Layout = new javax.swing.GroupLayout(panelAwal1);
         panelAwal1.setLayout(panelAwal1Layout);
         panelAwal1Layout.setHorizontalGroup(
             panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(VISI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelAwal1Layout.createSequentialGroup()
                 .addGroup(panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAwal1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAwal1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelAwal1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)))
-                            .addGroup(panelAwal1Layout.createSequentialGroup()
-                                .addGap(206, 206, 206)
-                                .addComponent(MISI, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 24, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
                     .addGroup(panelAwal1Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(551, 551, 551))
+                    .addComponent(VISI1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MISI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelAwal1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelAwal1Layout.createSequentialGroup()
-                    .addGap(209, 209, 209)
-                    .addComponent(VISI, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(235, Short.MAX_VALUE)))
         );
         panelAwal1Layout.setVerticalGroup(
             panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAwal1Layout.createSequentialGroup()
-                .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addComponent(Profile)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VISI)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VISI1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addComponent(MISI)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -299,9 +306,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
@@ -309,16 +314,13 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelAwal1Layout.createSequentialGroup()
-                    .addGap(86, 86, 86)
-                    .addComponent(VISI)
-                    .addContainerGap(388, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelUtama1.add(panelAwal1);
-        panelAwal1.setBounds(160, 90, 570, 510);
+        panelAwal1.setBounds(160, 80, 570, 510);
 
         panelUtama.add(panelUtama1);
         panelUtama1.setBounds(0, 10, 740, 630);
@@ -397,6 +399,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
     private javax.swing.JLabel MISI;
     private javax.swing.JLabel Profile;
     private javax.swing.JLabel VISI;
+    private javax.swing.JLabel VISI1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
