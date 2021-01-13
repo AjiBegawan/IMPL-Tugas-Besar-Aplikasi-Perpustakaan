@@ -183,6 +183,7 @@ public class Login extends javax.swing.JFrame {
 
            Statement stat = (Statement) db.getConnection().createStatement();;
            ResultSet res= stat.executeQuery(sql);
+           
 
             if (res.next())
             {   
