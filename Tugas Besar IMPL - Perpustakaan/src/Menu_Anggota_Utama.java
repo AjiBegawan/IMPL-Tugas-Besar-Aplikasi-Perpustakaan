@@ -64,7 +64,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MENU UTAMA");
         setBackground(new java.awt.Color(0, 51, 51));
-        setMinimumSize(new java.awt.Dimension(720, 640));
+        setMinimumSize(new java.awt.Dimension(800, 680));
         setPreferredSize(new java.awt.Dimension(720, 640));
         setSize(new java.awt.Dimension(720, 640));
         getContentPane().setLayout(null);
@@ -159,7 +159,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         );
 
         panelUtama1.add(panelNavBar);
-        panelNavBar.setBounds(0, 90, 160, 510);
+        panelNavBar.setBounds(0, 80, 160, 510);
 
         panelAwal1.setBackground(new java.awt.Color(0, 51, 51));
         panelAwal1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 2));

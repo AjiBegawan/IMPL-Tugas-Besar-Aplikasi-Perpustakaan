@@ -54,7 +54,7 @@ public int banyak;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KATALOG");
-        setMinimumSize(new java.awt.Dimension(900, 700));
+        setMinimumSize(new java.awt.Dimension(770, 690));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(0, 51, 51));
@@ -146,6 +146,7 @@ public int banyak;
         panelNavBar.setBounds(0, 100, 160, 530);
 
         panelAwal.setBackground(new java.awt.Color(0, 51, 51));
+        panelAwal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         panelAwal.setLayout(null);
 
         Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
@@ -175,7 +176,7 @@ public int banyak;
         panelAwal.setBounds(160, 100, 560, 530);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 730, 640);
+        panelUtama.setBounds(0, 0, 770, 670);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

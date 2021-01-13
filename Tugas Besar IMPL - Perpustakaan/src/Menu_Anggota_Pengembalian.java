@@ -58,6 +58,8 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
         TabelKembali = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PENGEMBALIAN");
+        setMinimumSize(new java.awt.Dimension(800, 720));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(0, 51, 51));
@@ -162,7 +164,7 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
         Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Profile.setText("P E N G E M B A L I A N");
         panelAwal.add(Profile);
-        Profile.setBounds(0, 10, 550, 70);
+        Profile.setBounds(0, 10, 590, 70);
 
         TabelKembali.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,41 +185,32 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
         jScrollPane2.setViewportView(TabelKembali);
 
         panelAwal.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 180, 520, 110);
+        jScrollPane2.setBounds(20, 100, 550, 110);
 
         panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 100, 550, 530);
+        panelAwal.setBounds(160, 100, 590, 530);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 720, 640);
+        panelUtama.setBounds(0, 0, 790, 680);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+    private void panelAwalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAwalMouseMoved
         // TODO add your handling code here:
-        Menu_Anggota_Profile MPP = new Menu_Anggota_Profile();
-        MPP.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_profileBtnActionPerformed
+        //        tampilNamaBuku();
+        //        tampilNamaMember();
+        //        tampilNamaPetugas();
+    }//GEN-LAST:event_panelAwalMouseMoved
 
-    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
+    private void TabelKembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelKembaliMouseClicked
         // TODO add your handling code here:
-        Menu_Anggota_Katalog MPK = new Menu_Anggota_Katalog();
-        MPK.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_katalogBtnActionPerformed
-
-    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
-        // TODO add your handling code here:
-        Menu_Anggota_Pengembalian MPP = new Menu_Anggota_Pengembalian();
-        MPP.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_pengembalianBtnActionPerformed
+        load();
+    }//GEN-LAST:event_TabelKembaliMouseClicked
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
-       
+
         Login L = new Login();
         Connect db = new Connect();
         String sq ="UPDATE anggota SET Session = 0 WHERE Session = 1";
@@ -233,22 +226,31 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         L.setVisible(true);
         dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
-    private void TabelKembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelKembaliMouseClicked
+    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
         // TODO add your handling code here:
-        load();
-    }//GEN-LAST:event_TabelKembaliMouseClicked
+        Menu_Anggota_Pengembalian MPP = new Menu_Anggota_Pengembalian();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pengembalianBtnActionPerformed
 
-    private void panelAwalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAwalMouseMoved
+    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
         // TODO add your handling code here:
-//        tampilNamaBuku();
-//        tampilNamaMember();
-//        tampilNamaPetugas();
-    }//GEN-LAST:event_panelAwalMouseMoved
+        Menu_Anggota_Katalog MPK = new Menu_Anggota_Katalog();
+        MPK.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_katalogBtnActionPerformed
+
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Profile MPP = new Menu_Anggota_Profile();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_profileBtnActionPerformed
 
      public void load() {
         //menghapus isi table tblGaji

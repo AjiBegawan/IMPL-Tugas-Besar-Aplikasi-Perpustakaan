@@ -59,7 +59,7 @@ public class Menu_Anggota_Profile extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PROFILE ANGGOTA");
         setBackground(new java.awt.Color(0, 153, 102));
-        setMinimumSize(new java.awt.Dimension(720, 500));
+        setMinimumSize(new java.awt.Dimension(780, 690));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(0, 51, 51));
@@ -78,7 +78,7 @@ public class Menu_Anggota_Profile extends javax.swing.JFrame {
         jLabel1.setBounds(30, 20, 250, 40);
 
         panelUtama.add(panelJudul);
-        panelJudul.setBounds(0, 0, 710, 90);
+        panelJudul.setBounds(0, 0, 770, 90);
 
         panelNavBar.setBackground(new java.awt.Color(0, 51, 51));
         panelNavBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
@@ -206,18 +206,22 @@ public class Menu_Anggota_Profile extends javax.swing.JFrame {
         panelAwal.setLayout(panelAwalLayout);
         panelAwalLayout.setHorizontalGroup(
             panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAwal1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addGroup(panelAwalLayout.createSequentialGroup()
+                .addComponent(panelAwal1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelAwalLayout.setVerticalGroup(
             panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAwal1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addGroup(panelAwalLayout.createSequentialGroup()
+                .addComponent(panelAwal1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 110, 570, 510);
+        panelAwal.setBounds(160, 110, 570, 520);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 740, 630);
+        panelUtama.setBounds(0, 0, 780, 670);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
