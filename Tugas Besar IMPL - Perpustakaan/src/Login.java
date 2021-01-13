@@ -178,7 +178,51 @@ public class Login extends javax.swing.JFrame {
     public void masuk (){
  
         try {
-            int no=1;
+           try{
+               int no=1;
+           Connect db = new Connect();
+           String sql        = "SELECT Nama, Password FROM anggota WHERE Nama = '"+getNama()+"' AND Password = '"+getPassword()+"' ";
+           
+           Statement stat = (Statement) db.getConnection().createStatement();;
+           ResultSet res= stat.executeQuery(sql);
+           
+
+            if (res.next())
+            {   
+                String dbasePassword=res.getString("Password").toString().trim();
+                String enteredPassword=new String(password.getText().trim());
+                String dbaseName=res.getString("Nama").toString().trim();
+                String enteredName=new String(nama.getText().trim());
+                
+                namaInput = enteredName;
+                passInput = enteredPassword;
+                
+                if(dbasePassword.equals(enteredPassword)){
+                    if(dbaseName.equals(enteredName)){
+                        Menu_Anggota_Utama obj=new Menu_Anggota_Utama();
+                        String sql1 ="UPDATE anggota SET Session = 1 WHERE Nama = '"+getNama()+"' ";
+                        java.sql.Connection db1=(Connection) db.getConnection();
+                        java.sql.PreparedStatement pst=db1.prepareStatement(sql1);
+                        pst.execute();
+                        obj.setVisible(true);
+                        dispose();
+                    }
+                    
+                }
+                else{
+                    Pengumuman.setText("Nama atau Password yang anda masukan salah");
+                }
+ 	       
+            }                     
+            else
+            {                  
+                Pengumuman.setText("Nama atau Password yang anda masukan salah" + namaInput);             
+            }                      
+            stat.close(); 
+           }catch(SQLException se){
+               
+           }
+           int no=1;
            Connect db = new Connect();
            String sql        = "SELECT Nama, Password FROM petugas WHERE Nama = '"+getNama()+"' AND Password = '"+getPassword()+"' ";
            
