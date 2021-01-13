@@ -28,6 +28,7 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
     private void initComponents() {
 
         panelUtama = new javax.swing.JPanel();
+        panelUtama1 = new javax.swing.JPanel();
         panelJudul = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelNavBar = new javax.swing.JPanel();
@@ -35,107 +36,169 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
         katalogBtn = new javax.swing.JButton();
         pengembalianBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
-        panelAwal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        panelAwal1 = new javax.swing.JPanel();
+        Profile = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MENU UTAMA");
+        setBackground(new java.awt.Color(0, 51, 51));
         setMinimumSize(new java.awt.Dimension(720, 640));
         setPreferredSize(new java.awt.Dimension(720, 640));
         setSize(new java.awt.Dimension(720, 640));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(255, 255, 255));
+        panelUtama.setMinimumSize(new java.awt.Dimension(800, 640));
         panelUtama.setLayout(null);
 
-        panelJudul.setBackground(new java.awt.Color(153, 255, 255));
+        panelUtama1.setBackground(new java.awt.Color(0, 51, 51));
+        panelUtama1.setLayout(null);
+
+        panelJudul.setBackground(new java.awt.Color(0, 51, 51));
         panelJudul.setMinimumSize(new java.awt.Dimension(720, 90));
-        panelJudul.setPreferredSize(new java.awt.Dimension(720, 90));
         panelJudul.setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setText("Menu Utama Anggota");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menu Utama");
         panelJudul.add(jLabel1);
-        jLabel1.setBounds(27, 12, 250, 53);
+        jLabel1.setBounds(30, 20, 250, 40);
 
-        panelUtama.add(panelJudul);
-        panelJudul.setBounds(0, 0, 720, 90);
+        panelUtama1.add(panelJudul);
+        panelJudul.setBounds(0, 0, 730, 90);
 
-        panelNavBar.setBackground(new java.awt.Color(255, 204, 204));
+        panelNavBar.setBackground(new java.awt.Color(0, 51, 51));
+        panelNavBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
 
+        profileBtn.setBackground(new java.awt.Color(50, 50, 50));
+        profileBtn.setForeground(new java.awt.Color(255, 243, 230));
         profileBtn.setText("Profile");
+        profileBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
 
+        katalogBtn.setBackground(new java.awt.Color(50, 50, 50));
+        katalogBtn.setForeground(new java.awt.Color(255, 243, 230));
         katalogBtn.setText("Katalog");
+        katalogBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        katalogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katalogBtnActionPerformed(evt);
+            }
+        });
 
+        pengembalianBtn.setBackground(new java.awt.Color(50, 50, 50));
+        pengembalianBtn.setForeground(new java.awt.Color(255, 243, 230));
         pengembalianBtn.setText("Pengembalian");
+        pengembalianBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pengembalianBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pengembalianBtnActionPerformed(evt);
+            }
+        });
 
+        logoutBtn.setBackground(new java.awt.Color(50, 50, 50));
+        logoutBtn.setForeground(new java.awt.Color(255, 243, 230));
         logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelNavBarLayout = new javax.swing.GroupLayout(panelNavBar);
         panelNavBar.setLayout(panelNavBarLayout);
         panelNavBarLayout.setHorizontalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutBtn)
-                    .addComponent(pengembalianBtn)
-                    .addComponent(katalogBtn)
-                    .addComponent(profileBtn))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(katalogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pengembalianBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         panelNavBarLayout.setVerticalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(profileBtn)
-                .addGap(52, 52, 52)
-                .addComponent(katalogBtn)
-                .addGap(62, 62, 62)
-                .addComponent(pengembalianBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(katalogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(pengembalianBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
-                .addGap(30, 30, 30))
+                .addGap(38, 38, 38))
         );
 
-        panelUtama.add(panelNavBar);
-        panelNavBar.setBounds(0, 90, 150, 550);
+        panelUtama1.add(panelNavBar);
+        panelNavBar.setBounds(0, 90, 160, 510);
 
-        jLabel2.setText("Panel Awal setelah Login");
+        panelAwal1.setBackground(new java.awt.Color(0, 51, 51));
+        panelAwal1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 2));
 
-        javax.swing.GroupLayout panelAwalLayout = new javax.swing.GroupLayout(panelAwal);
-        panelAwal.setLayout(panelAwalLayout);
-        panelAwalLayout.setHorizontalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel2)
-                .addContainerGap(219, Short.MAX_VALUE))
+        Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setForeground(new java.awt.Color(255, 255, 255));
+        Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Profile.setText("W E L C O M E");
+
+        javax.swing.GroupLayout panelAwal1Layout = new javax.swing.GroupLayout(panelAwal1);
+        panelAwal1.setLayout(panelAwal1Layout);
+        panelAwal1Layout.setHorizontalGroup(
+            panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
         );
-        panelAwalLayout.setVerticalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(505, Short.MAX_VALUE))
+        panelAwal1Layout.setVerticalGroup(
+            panelAwal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAwal1Layout.createSequentialGroup()
+                .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 436, Short.MAX_VALUE))
         );
 
-        panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 100, 550, 530);
+        panelUtama1.add(panelAwal1);
+        panelAwal1.setBounds(160, 90, 570, 510);
+
+        panelUtama.add(panelUtama1);
+        panelUtama1.setBounds(0, 10, 740, 630);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 720, 640);
+        panelUtama.setBounds(0, 20, 800, 620);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
+        Menu_Anggota_Profile MPP = new Menu_Anggota_Profile();
+        MPP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Katalog MPK = new Menu_Anggota_Katalog();
+        MPK.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_katalogBtnActionPerformed
+
+    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Pengembalian MPP = new Menu_Anggota_Pengembalian();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pengembalianBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        Login L = new Login();
+        L.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,14 +237,15 @@ public class Menu_Anggota_Utama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Profile;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton logoutBtn;
-    private javax.swing.JPanel panelAwal;
+    private javax.swing.JPanel panelAwal1;
     private javax.swing.JPanel panelJudul;
     private javax.swing.JPanel panelNavBar;
     private javax.swing.JPanel panelUtama;
+    private javax.swing.JPanel panelUtama1;
     private javax.swing.JButton pengembalianBtn;
     private javax.swing.JButton profileBtn;
     // End of variables declaration//GEN-END:variables

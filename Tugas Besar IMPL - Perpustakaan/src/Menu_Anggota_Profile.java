@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author indiz
+ * @silaing
  */
 public class Menu_Anggota_Profile extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
-    public Menu_Anggota_Profile() {
+ public Menu_Anggota_Profile()  {
         initComponents();
-        //myinitComponents();
+
+          load();
     }
 
     /**
@@ -36,107 +40,240 @@ public class Menu_Anggota_Profile extends javax.swing.JFrame {
         pengembalianBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         panelAwal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        panelAwal1 = new javax.swing.JPanel();
+        Profile = new javax.swing.JLabel();
+        NoTelepon = new javax.swing.JLabel();
+        IdProfile = new javax.swing.JLabel();
+        Nama = new javax.swing.JLabel();
+        Alamat = new javax.swing.JLabel();
+        FieldIdProfile = new javax.swing.JTextField();
+        FieldtglLahir = new javax.swing.JTextField();
+        FieldNama = new javax.swing.JTextField();
+        FieldTlpn = new javax.swing.JTextField();
+        FieldAlamat = new javax.swing.JTextField();
+        Alamat1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PROFILE ANGGOTA");
+        setBackground(new java.awt.Color(0, 153, 102));
+        setMinimumSize(new java.awt.Dimension(720, 500));
         getContentPane().setLayout(null);
 
-        panelUtama.setBackground(new java.awt.Color(255, 255, 255));
+        panelUtama.setBackground(new java.awt.Color(0, 51, 51));
         panelUtama.setLayout(null);
 
-        panelJudul.setBackground(new java.awt.Color(153, 255, 255));
+        panelJudul.setBackground(new java.awt.Color(0, 51, 51));
         panelJudul.setMinimumSize(new java.awt.Dimension(720, 90));
         panelJudul.setPreferredSize(new java.awt.Dimension(720, 90));
         panelJudul.setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Menu Profile Anggota");
         panelJudul.add(jLabel1);
-        jLabel1.setBounds(27, 12, 250, 53);
+        jLabel1.setBounds(30, 20, 250, 40);
 
         panelUtama.add(panelJudul);
-        panelJudul.setBounds(0, 0, 720, 90);
+        panelJudul.setBounds(0, 0, 710, 90);
 
-        panelNavBar.setBackground(new java.awt.Color(255, 204, 204));
+        panelNavBar.setBackground(new java.awt.Color(0, 51, 51));
+        panelNavBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
 
+        profileBtn.setBackground(new java.awt.Color(50, 50, 50));
+        profileBtn.setForeground(new java.awt.Color(255, 243, 230));
         profileBtn.setText("Profile");
+        profileBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
 
+        katalogBtn.setBackground(new java.awt.Color(50, 50, 50));
+        katalogBtn.setForeground(new java.awt.Color(255, 243, 230));
         katalogBtn.setText("Katalog");
+        katalogBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        katalogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katalogBtnActionPerformed(evt);
+            }
+        });
 
+        pengembalianBtn.setBackground(new java.awt.Color(50, 50, 50));
+        pengembalianBtn.setForeground(new java.awt.Color(255, 243, 230));
         pengembalianBtn.setText("Pengembalian");
+        pengembalianBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pengembalianBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pengembalianBtnActionPerformed(evt);
+            }
+        });
 
+        logoutBtn.setBackground(new java.awt.Color(50, 50, 50));
+        logoutBtn.setForeground(new java.awt.Color(255, 243, 230));
         logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelNavBarLayout = new javax.swing.GroupLayout(panelNavBar);
         panelNavBar.setLayout(panelNavBarLayout);
         panelNavBarLayout.setHorizontalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pengembalianBtn)
-                    .addGroup(panelNavBarLayout.createSequentialGroup()
-                        .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logoutBtn)
-                            .addComponent(katalogBtn)
-                            .addComponent(profileBtn))
-                        .addGap(18, 18, 18)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pengembalianBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(katalogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelNavBarLayout.setVerticalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(profileBtn)
-                .addGap(52, 52, 52)
-                .addComponent(katalogBtn)
                 .addGap(54, 54, 54)
-                .addComponent(pengembalianBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(katalogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pengembalianBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
-                .addGap(30, 30, 30))
+                .addGap(36, 36, 36))
         );
 
         panelUtama.add(panelNavBar);
-        panelNavBar.setBounds(0, 90, 150, 550);
+        panelNavBar.setBounds(0, 110, 160, 520);
 
-        jLabel2.setText("Profile");
+        panelAwal.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelAwal1.setLayout(null);
+
+        Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-user-male-30.png"))); // NOI18N
+        Profile.setText("P R O F I L E");
+        panelAwal1.add(Profile);
+        Profile.setBounds(0, 0, 570, 70);
+
+        NoTelepon.setText("N O   T E L E P O N");
+        panelAwal1.add(NoTelepon);
+        NoTelepon.setBounds(30, 350, 120, 40);
+
+        IdProfile.setText("I D   P R O F I L E ");
+        panelAwal1.add(IdProfile);
+        IdProfile.setBounds(30, 110, 100, 40);
+
+        Nama.setText("NAMA");
+        panelAwal1.add(Nama);
+        Nama.setBounds(30, 170, 100, 40);
+
+        Alamat.setText("TANGGAL  LAHIR");
+        panelAwal1.add(Alamat);
+        Alamat.setBounds(30, 230, 100, 40);
+
+        FieldIdProfile.setEditable(false);
+        panelAwal1.add(FieldIdProfile);
+        FieldIdProfile.setBounds(150, 110, 360, 40);
+
+        FieldtglLahir.setEditable(false);
+        panelAwal1.add(FieldtglLahir);
+        FieldtglLahir.setBounds(150, 230, 360, 40);
+
+        FieldNama.setEditable(false);
+        panelAwal1.add(FieldNama);
+        FieldNama.setBounds(150, 170, 360, 40);
+
+        FieldTlpn.setEditable(false);
+        panelAwal1.add(FieldTlpn);
+        FieldTlpn.setBounds(150, 350, 360, 40);
+
+        FieldAlamat.setEditable(false);
+        panelAwal1.add(FieldAlamat);
+        FieldAlamat.setBounds(150, 290, 360, 40);
+
+        Alamat1.setText("A L A M A T");
+        panelAwal1.add(Alamat1);
+        Alamat1.setBounds(30, 290, 100, 40);
 
         javax.swing.GroupLayout panelAwalLayout = new javax.swing.GroupLayout(panelAwal);
         panelAwal.setLayout(panelAwalLayout);
         panelAwalLayout.setHorizontalGroup(
             panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAwalLayout.createSequentialGroup()
-                .addContainerGap(272, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(248, 248, 248))
+            .addComponent(panelAwal1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
         panelAwalLayout.setVerticalGroup(
             panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(505, Short.MAX_VALUE))
+            .addComponent(panelAwal1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
         );
 
         panelUtama.add(panelAwal);
-        panelAwal.setBounds(160, 100, 550, 530);
+        panelAwal.setBounds(160, 110, 570, 510);
 
         getContentPane().add(panelUtama);
-        panelUtama.setBounds(0, 0, 720, 640);
+        panelUtama.setBounds(0, 0, 740, 630);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
+        Menu_Anggota_Profile MPP = new Menu_Anggota_Profile();
+        MPP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
+    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Katalog MPK = new Menu_Anggota_Katalog();
+        MPK.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_katalogBtnActionPerformed
+
+    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Pengembalian MPP = new Menu_Anggota_Pengembalian();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pengembalianBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        Login L = new Login();
+        L.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    
+    
+    private void load(){
+        // membuat tampilan model tabel
+        
+        //menampilkan data database kedalam tabel
+        try {
+            Login l = new Login();
+
+            Connect db = new Connect();
+            String sql  = "SELECT * FROM anggota WHERE Nama = '"+ l.getNama() +"' AND Password = '"+ l.getPassword() +"'";
+            Statement stat = (Statement) db.getConnection().createStatement();;
+            ResultSet res= stat.executeQuery(sql);
+ 
+            while(res.next()){
+                FieldIdProfile.setText(res.getString("ID_Anggota"));
+                FieldNama.setText(res.getString("Nama"));
+                FieldtglLahir.setText(res.getString("Tanggal_Lahir"));
+                FieldAlamat.setText(res.getString("Alamat"));
+                FieldTlpn.setText(res.getString("No_Telp"));
+            }
+        } catch (SQLException e) { 
+        }
+}
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -174,11 +311,22 @@ public class Menu_Anggota_Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Alamat;
+    private javax.swing.JLabel Alamat1;
+    private javax.swing.JTextField FieldAlamat;
+    private javax.swing.JTextField FieldIdProfile;
+    private javax.swing.JTextField FieldNama;
+    private javax.swing.JTextField FieldTlpn;
+    private javax.swing.JTextField FieldtglLahir;
+    private javax.swing.JLabel IdProfile;
+    private javax.swing.JLabel Nama;
+    private javax.swing.JLabel NoTelepon;
+    private javax.swing.JLabel Profile;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton katalogBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel panelAwal;
+    private javax.swing.JPanel panelAwal1;
     private javax.swing.JPanel panelJudul;
     private javax.swing.JPanel panelNavBar;
     private javax.swing.JPanel panelUtama;

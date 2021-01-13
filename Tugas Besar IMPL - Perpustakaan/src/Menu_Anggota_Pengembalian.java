@@ -1,3 +1,12 @@
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +19,18 @@
  */
 public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
 
+    
+     private DefaultTableModel model;
+    public int banyak;
+    Connect c = new Connect();
+    String buku1, buku2;
     /**
      * Creates new form Menu
      */
     public Menu_Anggota_Pengembalian() {
         initComponents();
         //myinitComponents();
+        load();
     }
 
     /**
@@ -34,104 +49,139 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
         profileBtn = new javax.swing.JButton();
         katalogBtn = new javax.swing.JButton();
         pengembalianBtn = new javax.swing.JButton();
-        peminjamanBtn = new javax.swing.JButton();
-        laporanBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         panelAwal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        Profile = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TabelKembali = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        panelUtama.setBackground(new java.awt.Color(255, 255, 255));
+        panelUtama.setBackground(new java.awt.Color(0, 51, 51));
         panelUtama.setLayout(null);
 
-        panelJudul.setBackground(new java.awt.Color(153, 255, 255));
+        panelJudul.setBackground(new java.awt.Color(0, 51, 51));
         panelJudul.setMinimumSize(new java.awt.Dimension(720, 90));
-        panelJudul.setPreferredSize(new java.awt.Dimension(720, 90));
         panelJudul.setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setText("Menu Pengembalian Petugas");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menu Profile Anggota");
         panelJudul.add(jLabel1);
-        jLabel1.setBounds(27, 12, 390, 53);
+        jLabel1.setBounds(30, 20, 250, 40);
 
         panelUtama.add(panelJudul);
-        panelJudul.setBounds(0, 0, 720, 90);
+        panelJudul.setBounds(0, 0, 710, 90);
 
-        panelNavBar.setBackground(new java.awt.Color(255, 204, 204));
+        panelNavBar.setBackground(new java.awt.Color(0, 51, 51));
+        panelNavBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
 
+        profileBtn.setBackground(new java.awt.Color(50, 50, 50));
+        profileBtn.setForeground(new java.awt.Color(255, 243, 230));
         profileBtn.setText("Profile");
+        profileBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         profileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileBtnActionPerformed(evt);
             }
         });
 
+        katalogBtn.setBackground(new java.awt.Color(50, 50, 50));
+        katalogBtn.setForeground(new java.awt.Color(255, 243, 230));
         katalogBtn.setText("Katalog");
+        katalogBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        katalogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katalogBtnActionPerformed(evt);
+            }
+        });
 
+        pengembalianBtn.setBackground(new java.awt.Color(50, 50, 50));
+        pengembalianBtn.setForeground(new java.awt.Color(255, 243, 230));
         pengembalianBtn.setText("Pengembalian");
+        pengembalianBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pengembalianBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pengembalianBtnActionPerformed(evt);
+            }
+        });
 
-        peminjamanBtn.setText("Peminjaman");
-
-        laporanBtn.setText("Laporan");
-
+        logoutBtn.setBackground(new java.awt.Color(50, 50, 50));
+        logoutBtn.setForeground(new java.awt.Color(255, 243, 230));
         logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelNavBarLayout = new javax.swing.GroupLayout(panelNavBar);
         panelNavBar.setLayout(panelNavBarLayout);
         panelNavBarLayout.setHorizontalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutBtn)
-                    .addComponent(laporanBtn)
-                    .addComponent(peminjamanBtn)
-                    .addComponent(pengembalianBtn)
-                    .addComponent(katalogBtn)
-                    .addComponent(profileBtn))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(pengembalianBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(katalogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelNavBarLayout.setVerticalGroup(
             panelNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNavBarLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(profileBtn)
-                .addGap(52, 52, 52)
-                .addComponent(katalogBtn)
-                .addGap(62, 62, 62)
-                .addComponent(pengembalianBtn)
-                .addGap(50, 50, 50)
-                .addComponent(peminjamanBtn)
-                .addGap(43, 43, 43)
-                .addComponent(laporanBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addComponent(profileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(katalogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pengembalianBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
-                .addGap(30, 30, 30))
+                .addGap(36, 36, 36))
         );
 
         panelUtama.add(panelNavBar);
-        panelNavBar.setBounds(0, 90, 150, 550);
+        panelNavBar.setBounds(0, 100, 160, 530);
 
-        jLabel2.setText("Pengembalian");
+        panelAwal.setBackground(new java.awt.Color(0, 51, 51));
+        panelAwal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        panelAwal.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelAwalMouseMoved(evt);
+            }
+        });
+        panelAwal.setLayout(null);
 
-        javax.swing.GroupLayout panelAwalLayout = new javax.swing.GroupLayout(panelAwal);
-        panelAwal.setLayout(panelAwalLayout);
-        panelAwalLayout.setHorizontalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel2)
-                .addContainerGap(271, Short.MAX_VALUE))
-        );
-        panelAwalLayout.setVerticalGroup(
-            panelAwalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAwalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(505, Short.MAX_VALUE))
-        );
+        Profile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        Profile.setForeground(new java.awt.Color(255, 255, 255));
+        Profile.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Profile.setText("P E N G E M B A L I A N");
+        panelAwal.add(Profile);
+        Profile.setBounds(0, 10, 550, 70);
+
+        TabelKembali.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+            }
+        ));
+        TabelKembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabelKembaliMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TabelKembali);
+
+        panelAwal.add(jScrollPane2);
+        jScrollPane2.setBounds(20, 180, 520, 110);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(160, 100, 550, 530);
@@ -144,8 +194,84 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
+        Menu_Anggota_Profile MPP = new Menu_Anggota_Profile();
+        MPP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_profileBtnActionPerformed
 
+    private void katalogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katalogBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Katalog MPK = new Menu_Anggota_Katalog();
+        MPK.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_katalogBtnActionPerformed
+
+    private void pengembalianBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengembalianBtnActionPerformed
+        // TODO add your handling code here:
+        Menu_Anggota_Pengembalian MPP = new Menu_Anggota_Pengembalian();
+        MPP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_pengembalianBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        Login L = new Login();
+        L.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void TabelKembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelKembaliMouseClicked
+        // TODO add your handling code here:
+        load();
+    }//GEN-LAST:event_TabelKembaliMouseClicked
+
+    private void panelAwalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelAwalMouseMoved
+        // TODO add your handling code here:
+//        tampilNamaBuku();
+//        tampilNamaMember();
+//        tampilNamaPetugas();
+    }//GEN-LAST:event_panelAwalMouseMoved
+
+     public void load() {
+        //menghapus isi table tblGaji
+        model = new DefaultTableModel();
+        TabelKembali.setModel(model);
+        model.addColumn("ID Pengembalian");
+        model.addColumn("ID Peminjaman");
+        model.addColumn("ID Buku");
+        model.addColumn("ID Member");
+        model.addColumn("ID Petugas");
+        model.addColumn("Tanggal Jatuh Tempo");
+        model.addColumn("Tanggal Pengembalian");
+        model.addColumn("Denda");
+
+        try {
+            //membuat statemen pemanggilan data pada table tblGaji dari database
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "Select * from pengembalian";
+            ResultSet res = stat.executeQuery(sql);
+
+            //penelusuran baris pada tabel tblGaji dari database
+            while (res.next()) {
+                Object[] obj = new Object[10];
+                obj[0] = res.getString("ID_Pengembalian");
+                obj[1] = res.getString("ID_Peminjaman");
+                obj[2] = res.getString("ID_Buku");
+                obj[3] = res.getString("ID_Anggota");
+                obj[4] = res.getString("ID_Petugas");
+                obj[5] = res.getString("Deadline_Pinjam");
+                obj[6] = res.getString("Tgl_Pengembalian");
+                obj[7] = res.getString("Denda");
+
+                model.addRow(obj);
+            }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+        banyak = model.getRowCount();
+    }
+     
+   
     /**
      * @param args the command line arguments
      */
@@ -183,16 +309,16 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Profile;
+    private javax.swing.JTable TabelKembali;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton katalogBtn;
-    private javax.swing.JButton laporanBtn;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel panelAwal;
     private javax.swing.JPanel panelJudul;
     private javax.swing.JPanel panelNavBar;
     private javax.swing.JPanel panelUtama;
-    private javax.swing.JButton peminjamanBtn;
     private javax.swing.JButton pengembalianBtn;
     private javax.swing.JButton profileBtn;
     // End of variables declaration//GEN-END:variables
