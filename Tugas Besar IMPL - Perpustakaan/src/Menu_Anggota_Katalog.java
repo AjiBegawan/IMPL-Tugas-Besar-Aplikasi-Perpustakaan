@@ -19,14 +19,15 @@ import javax.swing.table.DefaultTableModel;
 public class Menu_Anggota_Katalog extends javax.swing.JFrame {
 
 private DefaultTableModel model;
-    public int banyak;
+public int banyak;
+
     /**
      * Creates new form Menu
      */
     public Menu_Anggota_Katalog()  {
         initComponents();
 
-//          loadBuku();
+          loadBuku();
     }
 
     /**
@@ -53,6 +54,7 @@ private DefaultTableModel model;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KATALOG");
+        setMinimumSize(new java.awt.Dimension(900, 700));
         getContentPane().setLayout(null);
 
         panelUtama.setBackground(new java.awt.Color(0, 51, 51));
