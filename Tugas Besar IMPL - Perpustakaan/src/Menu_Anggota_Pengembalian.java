@@ -217,20 +217,7 @@ public class Menu_Anggota_Pengembalian extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
-        Connect db = new Connect();
-        String sq ="UPDATE anggota SET Session = 0 WHERE Session = 1";
-        java.sql.Connection conn=(Connection) db.getConnection();
-        java.sql.PreparedStatement pst = null;
-        try {
-            pst = conn.prepareStatement(sq);
-        } catch (SQLException ex) {
-            Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         Login L = new Login();
         Connect db = new Connect();
         String sq ="UPDATE anggota SET Session = 0 WHERE Session = 1";
