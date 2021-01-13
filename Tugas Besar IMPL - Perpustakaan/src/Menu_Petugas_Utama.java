@@ -1,7 +1,10 @@
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /*
@@ -311,6 +314,20 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
+        Connect db = new Connect();
+        String sq ="UPDATE petugas SET Session = 0 WHERE Session = 1";
+        java.sql.Connection conn=(Connection) db.getConnection();
+        java.sql.PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(sq);
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            pst.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu_Petugas_Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Login L = new Login();
         L.setVisible(true);
         dispose();
