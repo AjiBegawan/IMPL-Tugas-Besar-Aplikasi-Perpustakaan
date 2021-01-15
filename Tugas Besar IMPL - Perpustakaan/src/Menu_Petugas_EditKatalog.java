@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,17 +21,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
 
-    
-    
     private DefaultTableModel model;
     public int banyak;
+    Connect c = new Connect();
+
     /**
      * Creates new form Menu
      */
-    public Menu_Petugas_EditKatalog()  {
+    public Menu_Petugas_EditKatalog() {
         initComponents();
 
-          loadBuku();
+        loadBuku();
     }
 
     /**
@@ -328,6 +329,11 @@ public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
         Update.setBackground(new java.awt.Color(49, 44, 81));
         Update.setForeground(new java.awt.Color(255, 255, 255));
         Update.setText("Update");
+        Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateMouseClicked(evt);
+            }
+        });
         panelAwal.add(Update);
         Update.setBounds(440, 180, 100, 25);
 
@@ -378,8 +384,8 @@ public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         // TODO add your handling code here:
         Connect db = new Connect();
-        String sq ="UPDATE petugas SET Session = 0 WHERE Session = 1";
-        java.sql.Connection conn=(Connection) db.getConnection();
+        String sq = "UPDATE petugas SET Session = 0 WHERE Session = 1";
+        java.sql.Connection conn = (Connection) db.getConnection();
         java.sql.PreparedStatement pst = null;
         try {
             pst = conn.prepareStatement(sq);
@@ -424,7 +430,7 @@ public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
         // TODO add your handling code here:
         tampilrecord(evt);
         loadBuku();
-        
+
     }//GEN-LAST:event_TableBukuMouseClicked
 
     private void ClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearMouseClicked
@@ -447,13 +453,18 @@ public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
         kosong();
     }//GEN-LAST:event_TambahMouseClicked
 
-    public void tampilrecord(java.awt.event.MouseEvent evt){
+    private void UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseClicked
+        update();
+        loadBuku();
+    }//GEN-LAST:event_UpdateMouseClicked
+
+    public void tampilrecord(java.awt.event.MouseEvent evt) {
         //menampilkan record yg di click kedalam text field
         int baris = TableBuku.rowAtPoint(evt.getPoint());
-        String a =TableBuku.getValueAt(baris, 0).toString();
+        String a = TableBuku.getValueAt(baris, 0).toString();
         FIDBuku.setText(a);
-        String b = TableBuku.getValueAt(baris,1).toString();
-        FJudul.setText(b);       
+        String b = TableBuku.getValueAt(baris, 1).toString();
+        FJudul.setText(b);
         String c = TableBuku.getValueAt(baris, 2).toString();
         FPenulis.setText(c);
         String d = TableBuku.getValueAt(baris, 3).toString();
@@ -464,32 +475,31 @@ public class Menu_Petugas_EditKatalog extends javax.swing.JFrame {
         FJumlah.setText(f);
     }
 
-       private void kosong(){
-    // menghapus data di textfield yg input
+    private void kosong() {
+        // menghapus data di textfield yg input
         FIDBuku.setText(null);
         FJudul.setText(null);
         FPenulis.setText(null);
-        FPenerbit.setText(null);  
+        FPenerbit.setText(null);
         FKategori.setText(null);
-        FJumlah.setText(null);  
-    } 
-    
-       public void hapus(){
-           try {
-               Connect c = new Connect();
-            String sql ="delete from buku where ID_Buku='"+FIDBuku.getText()+"'";
-            java.sql.Connection conn=(Connection) c.getConnection();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+        FJumlah.setText(null);
+    }
+
+    public void hapus() {
+        try {
+            String sql = "delete from buku where ID_Buku='" + FIDBuku.getText() + "'";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this, "Berhasil di Hapus");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-       }
-       
-public void loadBuku(){
-     //menghapus isi table tblGaji
-        model =new DefaultTableModel();
+    }
+
+    public void loadBuku() {
+        //menghapus isi table tblGaji
+        model = new DefaultTableModel();
         TableBuku.setModel(model);
         model.addColumn("ID Buku");
         model.addColumn("Nama Buku");
@@ -498,43 +508,56 @@ public void loadBuku(){
         model.addColumn("Kategori");
         model.addColumn("Jumlah");
 
-     try{
-           //membuat statemen pemanggilan data pada table tblGaji dari database
-           Connect db = new Connect();
-           Statement stat = (Statement) db.getConnection().createStatement();;
-           String sql        = "Select * from buku";
-           ResultSet res   = stat.executeQuery(sql);
+        try {
+            //membuat statemen pemanggilan data pada table tblGaji dari database
+            Statement stat = (Statement) c.getConnection().createStatement();;
+            String sql = "Select * from buku";
+            ResultSet res = stat.executeQuery(sql);
 
-           //penelusuran baris pada tabel tblGaji dari database
-           while(res.next ()){
-                Object[ ] obj = new Object[6];
-                obj[0] = res.getString("ID_Buku"); 
+            //penelusuran baris pada tabel tblGaji dari database
+            while (res.next()) {
+                Object[] obj = new Object[6];
+                obj[0] = res.getString("ID_Buku");
                 obj[1] = res.getString("Judul_Buku");
-                obj[2] = res.getString("Penulis"); 
+                obj[2] = res.getString("Penulis");
                 obj[3] = res.getString("Penerbit");
                 obj[4] = res.getString("Kategori");
                 obj[5] = res.getString("Kuantiti");
-         
+
                 model.addRow(obj);
             }
-      }catch(SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage() );
-      }
-     banyak = model.getRowCount();
-}
-public void tambah(){
-            try {
-                Connect c = new Connect();
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+        banyak = model.getRowCount();
+    }
+
+    public void tambah() {
+        try {
             String sql;
-            sql = "INSERT INTO buku VALUES ('"+FIDBuku.getText()+"','"+FJudul.getText()+"','"+FPenulis.getText()+"','"+FPenerbit.getText()+"','"+FKategori.getText()+"','"+FJumlah.getText()+"')";
-            java.sql.Connection conn=(Connection) c.getConnection();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            sql = "INSERT INTO buku VALUES ('" + FIDBuku.getText() + "','" + FJudul.getText() + "','" + FPenulis.getText() + "','" + FPenerbit.getText() + "','" + FKategori.getText() + "','" + FJumlah.getText() + "')";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-}
+    }
+
+    public void update() {
+
+        try {
+            String sql;
+            sql = "UPDATE buku SET ID_Buku = '" + FIDBuku.getText() + "', Judul_Buku = '" + FJudul.getText() + "',Penulis= '" + FPenulis.getText() + "',Penerbit= '" + FPenerbit.getText() + "' ,kategori= '" + FKategori.getText() + "', Kuantiti='" + FJumlah.getText() + "' WHERE ID_Buku = '" + FIDBuku.getText() + "'";
+            java.sql.Connection conn = (Connection) c.getConnection();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil di Ubah");
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Perubahan Data Gagal" + e.getMessage());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -605,5 +628,4 @@ public void tambah(){
     private javax.swing.JButton profileBtn;
     // End of variables declaration//GEN-END:variables
 
-    
 }

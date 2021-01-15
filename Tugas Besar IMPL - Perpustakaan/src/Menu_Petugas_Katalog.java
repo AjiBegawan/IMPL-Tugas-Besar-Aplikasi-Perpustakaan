@@ -186,11 +186,13 @@ public class Menu_Petugas_Katalog extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TableBuku);
 
         panelAwal.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 220, 500, 300);
+        jScrollPane1.setBounds(40, 120, 500, 400);
 
+        TotalBuku.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TotalBuku.setForeground(new java.awt.Color(255, 255, 255));
         TotalBuku.setText("jLabel2");
         panelAwal.add(TotalBuku);
-        TotalBuku.setBounds(430, 160, 100, 50);
+        TotalBuku.setBounds(420, 70, 100, 30);
 
         EditKatalog.setText("Edit katalog");
         EditKatalog.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +201,7 @@ public class Menu_Petugas_Katalog extends javax.swing.JFrame {
             }
         });
         panelAwal.add(EditKatalog);
-        EditKatalog.setBounds(40, 180, 150, 30);
+        EditKatalog.setBounds(40, 70, 150, 30);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
@@ -308,7 +310,7 @@ public void loadBuku(){
             JOptionPane.showMessageDialog(null, err.getMessage() );
       }
      banyak = model.getRowCount();
-     TotalBuku.setText(""+banyak);
+     TotalBuku.setText("Total : "+banyak);
 }
     
     /**

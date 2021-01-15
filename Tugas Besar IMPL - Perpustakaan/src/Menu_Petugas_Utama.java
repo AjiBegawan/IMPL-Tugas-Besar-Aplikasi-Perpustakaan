@@ -75,7 +75,6 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldProfile = new javax.swing.JLabel();
         FieldKatalog = new javax.swing.JLabel();
         FieldPengembalian = new javax.swing.JLabel();
-        FieldLaporan = new javax.swing.JLabel();
         FieldPeminjaman = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -221,7 +220,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         JBuku.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
         JBuku.setForeground(new java.awt.Color(255, 255, 255));
         panelAwal.add(JBuku);
-        JBuku.setBounds(390, 180, 120, 60);
+        JBuku.setBounds(390, 210, 120, 60);
 
         JAnggota.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
         JAnggota.setForeground(new java.awt.Color(255, 255, 255));
@@ -231,7 +230,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         JPeminjaman.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
         JPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
         panelAwal.add(JPeminjaman);
-        JPeminjaman.setBounds(390, 360, 120, 60);
+        JPeminjaman.setBounds(390, 320, 120, 60);
 
         FieldProfile.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -245,7 +244,7 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         FieldKatalog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-book-90.png"))); // NOI18N
         FieldKatalog.setText("Buku     ");
         panelAwal.add(FieldKatalog);
-        FieldKatalog.setBounds(20, 170, 500, 80);
+        FieldKatalog.setBounds(20, 200, 500, 80);
 
         FieldPengembalian.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldPengembalian.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,19 +253,12 @@ public class Menu_Petugas_Utama extends javax.swing.JFrame {
         panelAwal.add(FieldPengembalian);
         FieldPengembalian.setBounds(20, 440, 500, 80);
 
-        FieldLaporan.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        FieldLaporan.setForeground(new java.awt.Color(255, 255, 255));
-        FieldLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-analyze-90.png"))); // NOI18N
-        FieldLaporan.setText("Laporan");
-        panelAwal.add(FieldLaporan);
-        FieldLaporan.setBounds(20, 260, 500, 80);
-
         FieldPeminjaman.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         FieldPeminjaman.setForeground(new java.awt.Color(255, 255, 255));
         FieldPeminjaman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8-return-book-90.png"))); // NOI18N
         FieldPeminjaman.setText("Peminjaman");
         panelAwal.add(FieldPeminjaman);
-        FieldPeminjaman.setBounds(20, 350, 500, 80);
+        FieldPeminjaman.setBounds(20, 310, 500, 80);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(150, 90, 570, 550);
@@ -425,7 +417,6 @@ public void loadAnggota(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FieldKatalog;
-    private javax.swing.JLabel FieldLaporan;
     private javax.swing.JLabel FieldPeminjaman;
     private javax.swing.JLabel FieldPengembalian;
     private javax.swing.JLabel FieldProfile;
