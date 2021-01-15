@@ -168,7 +168,7 @@ public class Menu_Petugas_Laporan extends javax.swing.JFrame {
             }
         });
         panelNavBar.add(logoutBtn);
-        logoutBtn.setBounds(0, 490, 150, 25);
+        logoutBtn.setBounds(0, 490, 150, 23);
 
         panelUtama.add(panelNavBar);
         panelNavBar.setBounds(0, 90, 150, 550);
@@ -251,6 +251,11 @@ public class Menu_Petugas_Laporan extends javax.swing.JFrame {
         CariPinjam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CariPinjamMouseClicked(evt);
+            }
+        });
+        CariPinjam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CariPinjamActionPerformed(evt);
             }
         });
         panelAwal.add(CariPinjam);
@@ -336,6 +341,10 @@ public class Menu_Petugas_Laporan extends javax.swing.JFrame {
             CariLoadPeminjaman();
         }
     }//GEN-LAST:event_CariPinjamMouseClicked
+
+    private void CariPinjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariPinjamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CariPinjamActionPerformed
     public void loadPeminjaman() {
         //menghapus isi table tblGaji
         model = new DefaultTableModel();

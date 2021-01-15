@@ -51,6 +51,8 @@ public int banyak;
         Profile = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableBuku = new javax.swing.JTable();
+        FCariBuku = new javax.swing.JTextField();
+        CariBuku = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KATALOG");
@@ -170,7 +172,23 @@ public int banyak;
         jScrollPane1.setViewportView(TableBuku);
 
         panelAwal.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 120, 500, 300);
+        jScrollPane1.setBounds(40, 160, 500, 300);
+        panelAwal.add(FCariBuku);
+        FCariBuku.setBounds(100, 90, 260, 30);
+
+        CariBuku.setText("CARI");
+        CariBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CariBukuMouseClicked(evt);
+            }
+        });
+        CariBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CariBukuActionPerformed(evt);
+            }
+        });
+        panelAwal.add(CariBuku);
+        CariBuku.setBounds(380, 90, 80, 30);
 
         panelUtama.add(panelAwal);
         panelAwal.setBounds(160, 100, 560, 530);
@@ -225,6 +243,18 @@ public int banyak;
         dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void CariBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CariBukuMouseClicked
+        if (FCariBuku.getText().equalsIgnoreCase("")) {
+            loadBuku();
+        } else {
+            CariLoadBuku();
+        }
+    }//GEN-LAST:event_CariBukuMouseClicked
+
+    private void CariBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CariBukuActionPerformed
+
     public void loadBuku(){
      //menghapus isi table tblGaji
         model =new DefaultTableModel();
@@ -260,6 +290,42 @@ public int banyak;
       }
 //     banyak = model.getRowCount();
 //     TotalBuku.setText(""+banyak);
+}
+    
+    public void CariLoadBuku(){
+     //menghapus isi table tblGaji
+        model =new DefaultTableModel();
+        TableBuku.setModel(model);
+        model.addColumn("ID Buku");
+        model.addColumn("Nama Buku");
+        model.addColumn("Penulis");
+        model.addColumn("Penerbit");
+        model.addColumn("Kategori");
+        model.addColumn("Jumlah");
+
+     try{
+           //membuat statemen pemanggilan data pada table tblGaji dari database
+           Connect db = new Connect();
+           Statement stat = (Statement) db.getConnection().createStatement();;
+           String sql        = "Select * from buku WHERE Judul_Buku = '" + FCariBuku.getText() + "'";
+           ResultSet res   = stat.executeQuery(sql);
+
+           //penelusuran baris pada tabel tblGaji dari database
+           while(res.next ()){
+                Object[ ] obj = new Object[6];
+                obj[0] = res.getString("ID_Buku"); 
+                obj[1] = res.getString("Judul_Buku");
+                obj[2] = res.getString("Penulis"); 
+                obj[3] = res.getString("Penerbit");
+                obj[4] = res.getString("Kategori");
+                obj[5] = res.getString("Kuantiti");
+         
+                model.addRow(obj);
+            }
+      }catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage() );
+      }
+//     banyakPeminjaman = model.getRowCount();
 }
     
     /**
@@ -299,6 +365,8 @@ public int banyak;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CariBuku;
+    private javax.swing.JTextField FCariBuku;
     private javax.swing.JLabel Profile;
     private javax.swing.JTable TableBuku;
     private javax.swing.JLabel jLabel1;
